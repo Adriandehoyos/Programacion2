@@ -18,6 +18,8 @@ public class main {
 	        matriz[i][j] = numero++;
 	        }
 	    }
+	    
+	    
 	    for (int i = 0; i < matriz.length; i++) {
 	        System.out.println("Fila "+ i + ": " );
 	        for (int j = 0; j < matriz.length; j++) {
@@ -38,6 +40,7 @@ public class main {
 
 	    for (int i = 0; i < matriz1.length; i++) {
 	        System.out.println("Fila "+ i + ": " );
+	        
 	        for (int j = 0; j < matriz1.length; j++) {
 	            System.out.println(matriz1[i][j] + "\t");
 	        }
@@ -63,7 +66,8 @@ public class main {
 	            matriz2 [i][j] =  reader.nextInt();
 	        }
 	    }
-	    int nulo = 0;
+	    
+	    int igual = 0;
 	    int mayor = 0;
 	    int menor = 0;
 
@@ -71,7 +75,7 @@ public class main {
 	    for (int i = 0; i < N; i++) {
 	        for (int j = 0; j < M; j++){
 	            if (matriz2[i][j] == 0){
-	                nulo ++;
+	                igual ++;
 	            }else if (matriz2[i][j] < 0) {
 	                mayor ++;
 	            }else{
@@ -80,7 +84,7 @@ public class main {
 	        }
 	    }
 	    
-	    System.out.println("Hay " + nulo + " valores iguales a cero.");
+	    System.out.println("Hay " + igual + " valores iguales a cero.");
 	    System.out.println("Hay " + mayor + " valores mayores a cero.");
 	    System.out.println("Hay " + menor + " valores menores a cero.");
 
@@ -117,38 +121,38 @@ public class main {
 	    //Ejercicio 5
 	    
 	    System.out.println("Introduce el numero de trabajadores:");
-	    int q = reader.nextInt();
+	    int x = reader.nextInt();
 	    
 	    
-	    double sueldos[][] = new double [q][2];
-	    for (int i = 0; i < q; i++) {
+	    double sueldo[][] = new double [x][2];
+	    for (int i = 0; i < x; i++) {
 	        System.out.println("El trabajador " + (i + 1) + " :");
 	        
 	        System.out.println("Introduce 0 para genero masculino y 1 para genero femenino");
-	        sueldos [i][0] = reader.nextDouble();
+	        sueldo [i][0] = reader.nextDouble();
 	        
 	        System.out.println("Sueldo: ");
-	        sueldos [i][1] = reader.nextDouble();     
+	        sueldo [i][1] = reader.nextDouble();     
 	    }
 
-	    double sumamasc = 0;
-	    double sumafem = 0;
-	    int masc = 0;
-	    int fem = 0;
+	    double sumhombres = 0;
+	    double summujeres = 0;
+	    int hombres = 0;
+	    int mujeres = 0;
 
-	    for (int i = 0; i < q; i++) {
-	        if (sueldos[i][0] == 0){
-	            masc ++;
-	            sumamasc += sueldos[i][1];
+	    for (int i = 0; i < x; i++) {
+	        if (sueldo[i][0] == 0){
+	            hombres ++;
+	            sumhombres += sueldo[i][1];
 	        } else{
-	            fem ++ ;
-	            sumafem += sueldos[i][1];
+	            mujeres ++ ;
+	            summujeres += sueldo[i][1];
 	        }
 	    }
-	    System.out.println("El sueldo medio de los hombres es: " + sumamasc/masc);
-	    System.out.println("El sueldo medio de las mujeres es: " + sumafem/fem);
+	    System.out.println("El sueldo medio de los hombres es: " + sumhombres/hombres);
+	    System.out.println("El sueldo medio de las mujeres es: " + summujeres/mujeres);
 
-	    if(sumamasc/masc > sumafem/fem){
+	    if(sumhombres/hombres > summujeres/mujeres){
 	        System.out.println("Existe una brecha salarial a favor de los hombres");
 	    }else{
 	        System.out.println("Existe una brecha salarial a favor de las mujeres");
