@@ -36,6 +36,15 @@ public class Movimiento {
         return this.cantidad;
     }
 
+    public void setCantidad(int cantidad){
+        if(cantidad > 0){
+            this.cantidad = cantidad;
+        }
+        else{
+            System.out.println("El numero debe ser mayor que 0");
+        }
+    }
+
     public String mostrarInfoMovimiento(){
 
         String mostrar = String.format("movimiento - Id: %s , Fecha: %s , Tipo: %s , Cantidad: %s" , this.id , this.fecha , this.tipo , this.cantidad);
