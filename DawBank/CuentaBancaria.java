@@ -14,7 +14,7 @@ public class CuentaBancaria {
     this.titular = titular;
     this.saldo = 0;
     this.movimientos = new Movimiento[nmovimientos];
-    elementosactuales = 0;
+    this.elementosactuales = 0;
   }
 
   public String getIban(){
@@ -25,8 +25,40 @@ public class CuentaBancaria {
     return this.titular;
   }
 
-  
+  public double getSaldo(){
+    return this.saldo;
+  }
 
+  //ingresar
+  public boolean ingresar(Movimiento m1){
+    boolean isadd = false;
+    if (m1 != null) {
+      if(m1.getCantidad() <= 0){
+        System.out.println("Cantidad no valida para ingresar");
+      } else{
+          this.movimientos[elementosactuales] = m1;
+          this.elementosactuales++;
+          isadd = true;
+      }
+    }
+    return isadd;
+  }
+
+  //retirada
+  public boolean retirada(Movimiento m1){
+    boolean isremoved = false;
+    if(m1 != null) {
+      if(m1.getCantidad() >= 0){
+        System.out.println("Cantidad no valida de retirada");
+      }else{
+
+      }
+
+
+    }
+
+
+  }
 
 
 
