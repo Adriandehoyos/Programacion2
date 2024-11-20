@@ -39,6 +39,7 @@ public class CuentaBancaria {
           this.movimientos[elementosactuales] = m1;
           this.elementosactuales++;
           this.saldo = this.saldo + m1.getCantidad();
+          System.out.println("Operacion realizada");
           isadd = true;
       }
     }
@@ -58,13 +59,12 @@ public class CuentaBancaria {
         this.movimientos[elementosactuales] = m1;
         this.elementosactuales++;
         this.saldo = this.saldo - m1.getCantidad();
+        System.out.println("Operacion realizada");
         isremoved = true;
       }
     }
 
     return isremoved;
   }
-
-
 
 }
