@@ -8,12 +8,12 @@ public class CuentaBancaria {
   private int elementosactuales;
 
 
-  public CuentaBancaria(String iban, String titular, int nmovimientos){
+  public CuentaBancaria(String iban, String titular){
 
     this.iban = iban;
     this.titular = titular;
     this.saldo = 0;
-    this.movimientos = new Movimiento[nmovimientos];
+    this.movimientos = new Movimiento[100];
     this.elementosactuales = 0;
   }
 
@@ -42,6 +42,9 @@ public class CuentaBancaria {
           System.out.println("Operacion realizada");
           isadd = true;
       }
+      if (m1.getCantidad()>3000) {
+        System.out.println("Notificar a hacienda");
+      }
     }
     return isadd;
   }
@@ -53,6 +56,7 @@ public class CuentaBancaria {
       if(m1.getCantidad() <= 0){
         System.out.println("Cantidad no valida de retirada");
       }
+      
       if(this.saldo - m1.getCantidad()<= -50){
         System.err.println("Cantidad no valida supera los -50€");
       }else{
@@ -65,6 +69,17 @@ public class CuentaBancaria {
     }
 
     return isremoved;
+  }
+
+    public String mostrarMovimiento(){
+      if(elementosactuales==0){
+          System.out.println("No existen movimientos.");
+      }
+      String infomovimiento = "";
+      for (int i = 0; i < elementosactuales; i++) {
+          infomovimiento += movimientos[i].mostrarInfoMovimiento();
+      }
+      return infomovimiento;
   }
 
 }
