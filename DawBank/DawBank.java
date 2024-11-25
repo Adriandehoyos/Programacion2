@@ -61,13 +61,13 @@ public class DawBank {
         }else if (menu.equals("5")) {
             System.out.println("Introduce la cantidad que quieres ingresar: ");
             double ingreso = reader.nextDouble();
-            Movimiento ingresado = new Movimiento(true, ingreso);
+            Movimiento ingresado = new Movimiento("Ingreso", ingreso);
             cuenta.ingresar(ingresado);
 
         }else if (menu.equals("6")) {
             System.out.println("Introduce la cantidad que quieres retirar: ");
             double retirada = reader.nextDouble();
-            Movimiento retirado = new Movimiento(true, retirada);
+            Movimiento retirado = new Movimiento("Retirada", retirada);
             cuenta.retirada(retirado);
         }else if (menu.equals("7")) {
             System.out.println(cuenta.mostrarMovimiento());

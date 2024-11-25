@@ -7,11 +7,11 @@ public class Movimiento {
 
     private int id;
     private String fecha;
-    private boolean tipo;
+    private String tipo;
     private double cantidad;
 
     //constructores
-    public Movimiento(boolean tipo, double cantidad){
+    public Movimiento(String tipo, double cantidad){
         this.id = contador;
         contador++;
 
@@ -28,7 +28,7 @@ public class Movimiento {
         return this.fecha;
     }
 
-    public boolean getTipo(){
+    public String getTipo(){
         return this.tipo;
     }
 
