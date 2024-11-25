@@ -30,7 +30,7 @@ public class DawBank {
         System.out.println("Introduce el titular de la cuenta");
         String titular = reader.nextLine();
 
-
+        
         String menu = "";
 
         do {
