@@ -12,7 +12,9 @@ public class Cliente {
     private Pelicula [] peliculasAlquiladas;
     private int nElementosActuales;
 
-    public Cliente(String dni, String nombre, String direccion, int nPeliculas){
+    public Cliente(String dni, String nombre, String direccion, int nPeliculas, LocalDate fechaNacimiento){
+        this.dni = dni;
+        this.nombre = nombre;
         
     }
 
