@@ -7,27 +7,29 @@ public class Pelicula {
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-    private int codigo;
+    private String codigo;
     private String titulo;
     private Genero genero;
-    private LocalDate FechaRegistro;
-    private LocalDate FechaBaja;
-    private LocalDateTime FechaAlquiler;
+    private LocalDate fechaRegistro;
+    private LocalDate fechaBaja;
+    private LocalDateTime fechaAlquiler;
     private boolean isAlquilada;
     private static int contador = 0;
 
     public Pelicula(String titulo, Genero genero){
         this.titulo = titulo;
         this.genero = genero;
-        this.FechaRegistro = LocalDate.now();
-        this.FechaBaja = LocalDate.now();
-        this.FechaAlquiler = LocalDateTime.now();
-        this.codigo = contador;
+        this.fechaRegistro = LocalDate.now();
+        this.fechaBaja = LocalDate.now();
+        this.fechaAlquiler = LocalDateTime.now();
+        this.codigo = "P" + contador;
         contador++;
+        this.isAlquilada = false;
+        this.fechaAlquiler.format(formatter);
         
     }
 
-    public int getCodigo(){
+    public String getCodigo(){
         return this.codigo;
     }
 
@@ -40,15 +42,24 @@ public class Pelicula {
     }
 
     public LocalDate getFechaRegistro(){
-        return this.FechaRegistro;
+        return this.fechaRegistro;
     }
 
     public LocalDate getFechaBaja(){
-        return this.FechaBaja;
+        return this.fechaBaja;
     }
 
     public LocalDateTime getFechaAlquiler(){
-        return this.FechaAlquiler;
+        return this.fechaAlquiler;
+    }
+
+    public boolean getIsAlquilada(){
+        return this.isAlquilada;
+    }
+
+    public String mostrarInfoPelicula(){
+        String info = String.format("Pelicula - codigo: %s Titulo: %s Genero: %s fechaRegistro: %s fechaBaja: %s fechaAlquiler: %s isAlquilada: %s ", this.codigo, this.titulo, this.genero, this.fechaRegistro, this.fechaBaja, this.fechaAlquiler, this.isAlquilada);
+        return info;
     }
 
 }//
