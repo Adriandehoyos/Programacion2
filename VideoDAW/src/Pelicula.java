@@ -20,12 +20,10 @@ public class Pelicula {
         this.titulo = titulo;
         this.genero = genero;
         this.fechaRegistro = LocalDate.now();
-        this.fechaBaja = LocalDate.now();
-        this.fechaAlquiler = LocalDateTime.now();
         this.codigo = "P" + contador;
         contador++;
+
         this.isAlquilada = false;
-        this.fechaAlquiler.format(formatter);
         
     }
 
@@ -53,12 +51,24 @@ public class Pelicula {
         return this.fechaAlquiler;
     }
 
+    public void setFechaAlquiler(LocalDateTime fechaAlq){
+        this.fechaAlquiler = fechaAlq;
+        if(fechaAlquiler != null){
+            this.isAlquilada = true;
+        }
+        else{
+            this.isAlquilada = false;
+        }
+        
+    }
+
     public boolean getIsAlquilada(){
         return this.isAlquilada;
     }
 
     public String mostrarInfoPelicula(){
-        String info = String.format("Pelicula - codigo: %s Titulo: %s Genero: %s fechaRegistro: %s fechaBaja: %s fechaAlquiler: %s isAlquilada: %s ", this.codigo, this.titulo, this.genero, this.fechaRegistro, this.fechaBaja, this.fechaAlquiler, this.isAlquilada);
+        String info = String.format("Pelicula - codigo: %s Titulo: %s Genero: %s fechaRegistro: %s fechaBaja: %s fechaAlquiler: %s isAlquilada: %s ", this.codigo, 
+        this.titulo, this.genero, this.fechaRegistro.format(formatter), this.fechaBaja.format(formatter), this.fechaAlquiler.format(formatter), this.isAlquilada);
         return info;
     }
 
