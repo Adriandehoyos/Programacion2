@@ -62,7 +62,7 @@ public class Pelicula {
         
     }
 
-    public boolean getIsAlquilada(){
+    public boolean IsAlquilada(){
         return this.isAlquilada;
     }
 
@@ -70,6 +70,20 @@ public class Pelicula {
         String info = String.format("Pelicula - codigo: %s Titulo: %s Genero: %s fechaRegistro: %s fechaBaja: %s fechaAlquiler: %s isAlquilada: %s ", this.codigo, 
         this.titulo, this.genero, this.fechaRegistro.format(formatter), this.fechaBaja.format(formatter), this.fechaAlquiler.format(formatter), this.isAlquilada);
         return info;
+    }
+
+    public String pAlquilada(){
+        String pAlquilada = String.format("El Codigo de la pelicula es %s", this.codigo);
+        return pAlquilada;
+    }
+
+    public boolean alquilado(){
+        this.isAlquilada = true;
+        return this.isAlquilada;
+    }
+    public boolean devolucion(){
+        this.isAlquilada = false;
+        return this.isAlquilada;
     }
 
 }//
