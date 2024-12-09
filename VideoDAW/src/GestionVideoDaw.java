@@ -1,14 +1,12 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.Scanner;
 
 public class GestionVideoDaw {
 public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         final String patroncif = "[A-Z]{1}[0-9]{8}";
         final String patrondni = "[0-9]{8}[A-Z]{1}";
-        VideoDaw v1 = null;
+        VideoDaw video = null;
         Cliente cliente = null;
         Pelicula nuevaPelicula = null;
 
@@ -24,30 +22,32 @@ public static void main(String[] args) {
             System.out.println("7-Dar de baja pelicula");
             System.out.println("8-Salir");
             System.out.print("Selecciona una opcion: ");
-            opcion = entrada.nextLine();
+            opcion = reader.nextLine();
 
             switch (opcion) {
                 case "1":
+                reader = new Scanner(System.in);
                     String cif = MiUtils.comprobarPatronRepetidamente(patroncif, "Introduce el CIF del videoclub");
 
                     String direccion = MiUtils.leerTextoPantalla("Introduce la direccion del videoclub");
 
                     VideoDaw videoclub = new VideoDaw(cif, direccion);
-                    v1 = videoclub;
+                    video = videoclub;
                     System.out.println(videoclub.mostrarInfoVideoclub());
                     break;
 
                 case "2":
-                    if(v1 != null){
-                        entrada = new Scanner (System.in);
+                reader = new Scanner (System.in);
+                    if(video != null){
                         System.out.println("Registrar Pelicula");
                         String titulo = MiUtils.leerTextoPantalla("Introduce el titulo de la pelicula");
 
                         for(int i = 0; i < 1; i++){
                             System.out.println("\n¿Cual es el genero de la pelicula? " + "\n1.-Comedia" + 
                             "\n2.-Drama" + "\n3.-Terror" + "\n4.-Suspense" + "\n5.-Aventura " + "\n6.-Fantasia" + "\n7-Ciencia Ficcion");
-                            entrada = new Scanner(System.in);
-                            int nGenero = entrada.nextInt();
+                            reader = new Scanner(System.in);
+                            int nGenero = reader.nextInt();
+                            reader.nextLine(); // Limpia el buffer
     
                             if (nGenero == 1){
                                 nuevaPelicula = new Pelicula(titulo, Genero.COMEDIA);	
@@ -71,16 +71,16 @@ public static void main(String[] args) {
                                 nuevaPelicula = new Pelicula(titulo, Genero.CIENCIA_FICCION);
                             }
                             else if(nGenero > 7 || nGenero < 1){
-                                System.out.println("ERROR, el dato introducido no es valido");
+                                System.out.println("ERROR, el dato introducido no es valido.");
                                 i -= 1;
                             }
                         }
                     if (nuevaPelicula != null){
-                        System.out.println("Pelicula registrada correctamente");
+                        System.out.println("Pelicula registrada correctamente.");
 
                         System.out.println(nuevaPelicula.mostrarInfoPelicula());
 
-                        v1.nuevaPelicula(nuevaPelicula);
+                        video.nuevaPelicula(nuevaPelicula);
                     }
                     } else{
                         System.out.println("Antes de registrar una pelicula, cree un videoclub.");
@@ -88,23 +88,23 @@ public static void main(String[] args) {
                     break;
 
                 case "3":
-                entrada = new Scanner (System.in);
-                    if(v1 != null){
-                        String dni = MiUtils.comprobarPatronRepetidamente(patrondni, "Introduce el dni del cliente"); 
+                reader = new Scanner (System.in);
+                    if(video != null){
+                        String dni = MiUtils.comprobarPatronRepetidamente(patrondni, "Introduce el dni del cliente."); 
 
-                        String nombre = MiUtils.leerTextoPantalla("Introduce el nombre del cliente");
+                        String nombre = MiUtils.leerTextoPantalla("Introduce el nombre del cliente.");
 
-                        String direccionCliente = MiUtils.leerTextoPantalla("Introduce la direccion del cliente");
+                        String direccionCliente = MiUtils.leerTextoPantalla("Introduce la direccion del cliente.");
 
                         LocalDate fechaNacimiento = MiUtils.leerFecha();
 
                         LocalDate hoy = LocalDate.now();
 
-                        Period mayorEdad = Period.between(fechaNacimiento, hoy);
+                        int n = hoy.getYear() - fechaNacimiento.getYear();
 
-                        if(mayorEdad.getYears() > 18){
+                        if(n >= 18){
                             Cliente c = new Cliente(dni, nombre, direccionCliente, fechaNacimiento);
-                            v1.nuevoCliente(c);
+                            video.nuevoCliente(c);
                             cliente = c;
                             System.out.println(c.mostrarInfoCliente());
                         } else{
@@ -116,69 +116,73 @@ public static void main(String[] args) {
                     break;
 
                 case "4":
-                entrada = new Scanner (System.in);
+                    reader = new Scanner(System.in);
+                    if(video != null && cliente != null && nuevaPelicula != null){
+                        System.out.println("¿Quien va alquilar la pelicula?");
+                        System.out.println(video.mostrarClientes());
+                        int cl = reader.nextInt();
+                        reader.nextLine(); // Limpia el buffer
 
-                    if(v1!=null || cliente != null || nuevaPelicula != null){
-                        System.out.println("Quien va a alquilar la pelicula?");
-                        v1.mostrarClientes();
-                        int c = entrada.nextInt();
-                        System.out.println("Que pelicula quieres alquilar?");
-                        v1.mostrarPeliculasNoAlquiladas();
-                        int p1 = entrada.nextInt();
-                       // v1.alquilarPelicula(c, Pelicula);
-						//v1.obtenerClientePorPosicion(c).insertarPelicula(v1.obtenerPeliculaPorPosicion(Pelicula));
-                    } else{
-                        System.out.println("Antes de alquilar una pelicula, registrala en el videoclub.");
+                        System.out.println("¿Que pelicula quieres alquilar?");
+                        System.out.println(video.mostrarPeliculasNoAlquiladas());
+                        int pl = reader.nextInt();
+                        reader.nextLine(); // Limpia el buffer
+
+                        video.alquilarPelicula(cl, pl);
+
+                    }else{
+                        System.out.println("Faltan datos revisa el VideoDaw");
                     }
                     break;
                 case "5":
-                entrada = new Scanner (System.in);
-                    if(v1 != null && cliente != null && nuevaPelicula != null){
-                        System.out.println("Selecciona el cliente que quiere devolver una pelicula.");
-                        v1.mostrarClientes();
-                        int c = entrada.nextInt();
-                        
-                        System.out.println("Que pelicula va a devolver");
-                       // v1.mostrarPeliculasAlquiladas();
-                        int p1 = entrada.nextInt();
-                        v1.devolverPelicula(c, p1);
-                        //v1.posicionCliente(c).quitarPelicula(v1.posicionPelicula(p1));
-                       // v1.posicionCliente(c).mostrarPeliculas();
-                        LocalDateTime fechaDevolucion = LocalDateTime.now();
-                        Period dias = Period.between(nuevaPelicula.getFechaAlquiler().toLocalDate(), fechaDevolucion.toLocalDate());
-                        if(dias.getDays() >= 2){
-                            System.out.println("Has excedido el tiempo de alquiler. Deberas pagar una multa.");
-                        }
-                    } else{
-                        System.out.println("Antes de devolver una pelicula, registrala en el videoclub.");
+                    reader = new Scanner(System.in);
+                    if(video != null && cliente != null && nuevaPelicula != null){
+                        System.out.println("¿Quien va ha devolver la pelicula?");
+                        System.out.println(video.mostrarClientes());
+                        int cl = reader.nextInt();
+                        reader.nextLine(); // Limpia el buffer
+
+                        System.out.println("¿Que pelicula quieres devolver?");
+                        System.out.println(video.mostrarPeliculasRegistradas());
+                        int pl = reader.nextInt();
+                        reader.nextLine(); // Limpia el buffer
+
+                        video.devolverPelicula(cl, pl);
+
+                    }else{
+                        System.out.println("Faltan datos revisa el VideoDaw");
                     }
 
                     break;
                 case "6":
-                    if(v1 != null && cliente != null){
+                    reader = new Scanner(System.in);
+                    if(video != null && cliente != null){
                         System.out.println("Selecciona el cliente que quieres dar de baja.");
-                        v1.mostrarClientes();
-                        int c = entrada.nextInt();
-                        v1.darBajaCliente(cliente, c);
+                        video.mostrarClientes();
+                        int c = reader.nextInt();
+                        reader.nextLine(); // Limpia el buffer
+                        video.darBajaCliente(cliente, c);
                     } else{
-                        System.out.println("Para dar de baja a un cliente primero tienes que registrarlo.");
+                        System.out.println("El cliente no esta registrado.");
                     }
                     break;
                 case "7":
-                    if(v1 != null && nuevaPelicula != null){
+                    reader = new Scanner(System.in);
+                    if(video != null && nuevaPelicula != null){
                         System.out.println("Selecciona la pelicula que quieres dar de baja.");
-                        v1.mostrarPeliculasNoAlquiladas();
-                        int p = entrada.nextInt();
-                        v1.darBajaPelicula(nuevaPelicula, p);
+                        video.mostrarPeliculasNoAlquiladas();
+                        int p = reader.nextInt();
+                        reader.nextLine(); // Limpia el buffer
+                        video.darBajaPelicula(nuevaPelicula, p);
                     } else{
-                        System.out.println("Para dar de baja a una pelicula primero tienes que registrarla.");
+                        System.out.println("Esta pelicula no esta registrada.");
                     }
                     break;
                 case "8":
-                    System.out.println("Saliendo del menu de Gestion");
+                    System.out.println("Saliendo del menu de Gestion.");
                     break;
                 default:
-                    System.out.println("Introduce una opcion valida");
+                    System.out.println("Introduce una opcion valida.");
             }
         } while (!opcion.equals("8"));
     }

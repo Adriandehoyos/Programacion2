@@ -107,18 +107,18 @@ public class VideoDaw {
     }
 
     //Metodos para modificar datos
-    public boolean alquilarPelicula(int c, int p){
+    public void alquilarPelicula(int c, int p){
         this.obtenerClientePorPosicion(c);
-        this.obtenerPeliculaPorPosicion(p).alquilado();
-        boolean isAdd = false;
-        return isAdd;
+        Pelicula movie = this.obtenerPeliculaPorPosicion(p);
+        movie.alquilado();
+        this.clientes[c].insertarPelicula(movie);
     }
 
-    public boolean devolverPelicula(int c, int p){
+    public void devolverPelicula(int c, int p){
         this.obtenerClientePorPosicion(c);
-        this.obtenerPeliculaPorPosicion(p).devolucion();
-        boolean isremoved = false;
-        return isremoved;
+        Pelicula movie = this.obtenerPeliculaPorPosicion(p);
+        movie.devolucion();
+        this.clientes[c].quitarPelicula(movie);
     }
 
     //Dar de baja un cliente
@@ -132,7 +132,7 @@ public class VideoDaw {
             this.clientes [nClientes-1] = null;
             nClientes--;
             isremoved = true;
-            System.out.println("Cliente eliminado");
+            System.out.println("Cliente eliminado.");
         }
         
     return isremoved;
@@ -150,7 +150,7 @@ public class VideoDaw {
             this.peliculas [nPeliculas-1] = null;
             nPeliculas--;
             isremoved = true;
-            System.out.println("Pelicula eliminada");
+            System.out.println("Pelicula eliminada.");
         }
     return isremoved;
     }
