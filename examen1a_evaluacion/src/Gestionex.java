@@ -60,7 +60,7 @@ public static void main(String[] args) throws Exception{
                         System.out.println("Que trabajador quieres contratar ");
                         System.out.println(empresa.mostrarTrabajadores());
                         int ntrabajador = reader.nextInt();
-                        empresa.meterTrabajador(ntrabajador);
+                        //empresa.meterTrabajador(ntrabajador);
 
                         break;
 
@@ -85,7 +85,7 @@ public static void main(String[] args) throws Exception{
                         System.out.println("Que trabajador quieres despedir ");
                         System.out.println(empresa.mostrarTrabajadores());
                         int ntrabajador2 = reader.nextInt();
-                        empresa.meterTrabajador(ntrabajador2);
+                        //empresa.meterTrabajador(ntrabajador2);
 
                         break;
                     case "7":
