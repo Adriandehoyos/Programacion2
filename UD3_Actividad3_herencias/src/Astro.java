@@ -43,7 +43,7 @@ public class Astro {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Astro");
+        sb.append("Astro ");
         sb.append("Masa del cuerpo:").append(masaCuerpo);
         sb.append(", Diametro Medio:").append(diametroMedio);
         sb.append(", Periodo de rotacion:").append(periodoRotacion);
