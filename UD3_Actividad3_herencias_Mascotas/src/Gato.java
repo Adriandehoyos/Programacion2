@@ -6,33 +6,19 @@ private String color;
 private boolean peloLargo = false;
 
 public Gato(String nombre, double edad, boolean estado, LocalDateTime fechaDeNacimiento, String color, boolean peloLargo){
-    super(nombre, edad, estado, fechaDeNacimiento);
 
     this.color = color;
     this.peloLargo = peloLargo;
 }
 
-public String getColor() {
-    return color;
+@Override
+void muestra() {
+    System.out.println("Gato - Nombre: " + nombre + ", Color: " + color);
 }
 
-public boolean isPeloLargo() {
-    return peloLargo;
+@Override
+void habla() {
+    System.out.println("¡Miau!");
 }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Gato{");
-        sb.append("Nombre de la mascota= ").append(super.getNombre());
-        sb.append(", Edad de la mascota= ").append(super.getEdad());
-        sb.append(", ¿Esta vivo? ").append(super.isEstado());
-        sb.append(", Fecha de nacimiento de la mascota= ").append(super.getFechaDeNacimiento());
-        sb.append(", color=").append(color);
-        sb.append(", peloLargo=").append(peloLargo);
-        sb.append('}');
-        return sb.toString();
-    }
-
 
 }//

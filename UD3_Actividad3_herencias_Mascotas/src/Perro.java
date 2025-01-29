@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 
 public class Perro extends Mascotas{
 
@@ -14,12 +13,14 @@ public class Perro extends Mascotas{
         this.pulgas = pulgas;
     }
 
-    public String getRaza() {
-        return raza;
+    @Override
+    void muestra() {
+        System.out.println("Perro - Nombre: " + nombre + ", Raza: " + raza);
+    }
+    
+    @Override
+    void habla() {
+        System.out.println("¡Guau!");
     }
 
-    public boolean isPulgas() {
-        return pulgas;
-    }
-
-}
+}//

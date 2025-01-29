@@ -6,8 +6,14 @@ protected String estado;
 protected String fechaNacimiento;
 
 abstract void muestra();
-abstract void cumpleaños();
-abstract void morir();
+
+public void cumpleaños(){
+    System.out.println("¡Feliz Cumpleaños!");
+}
+
+public void morir(){
+    System.out.println("Fallecido");
+}
 abstract void habla();
 
-}
+}// 
