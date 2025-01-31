@@ -1,9 +1,9 @@
 public class Loro extends Aves{
 
 private String origen;
-private String habla;
+private Boolean habla;
 
-public Loro (String nombre, int edad, String estado, String fechaNacimiento, String pico, String vuela, String origen, String habla){
+public Loro (String nombre, int edad, String estado, String fechaNacimiento, String pico, String vuela, String origen, Boolean habla){
     this.nombre = nombre;
     this.edad = edad;
     this.estado = estado;
