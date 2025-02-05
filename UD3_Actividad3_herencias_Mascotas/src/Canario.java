@@ -1,9 +1,9 @@
 public class Canario extends Aves{
 
 private String color;
-private Boolean canta;
+private String canta;
 
-public Canario (String nombre, int edad, String estado, String fechaNacimiento, String pico, String vuela, String color, Boolean canta){
+public Canario (String nombre, int edad, String estado, String fechaNacimiento, String pico, String vuela, String color, String canta){
     this.nombre = nombre;
     this.edad = edad;
     this.estado = estado;

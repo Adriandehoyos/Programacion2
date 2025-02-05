@@ -1,11 +1,10 @@
-import java.time.LocalDateTime;
 
 public class Gato extends Mascotas{
 
 private String color;
-private boolean peloLargo = false;
+private String peloLargo;
 
-public Gato(String nombre, double edad, boolean estado, LocalDateTime fechaDeNacimiento, String color, boolean peloLargo){
+public Gato(String nombre, double edad, String estado, String fechaDeNacimiento, String color, String peloLargo){
 
     this.color = color;
     this.peloLargo = peloLargo;
