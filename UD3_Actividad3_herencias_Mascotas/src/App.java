@@ -33,7 +33,7 @@ public class App {
                 System.out.print("Seleccione tipo: ");
                 tipo = reader.nextLine();
 
-                //Datos comunes para todos
+                //Datos de todos los animales
                 System.out.print("Nombre: ");
                 String nombre = reader.nextLine();
                 System.out.print("Edad: ");
