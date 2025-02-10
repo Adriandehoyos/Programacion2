@@ -21,4 +21,16 @@ public class Agenda {
 
     }
 
-}
+    public boolean eliminarContacto(String nombre){
+        for (int i = 0; i < nContactos; i++) {
+            if (contGuardados[i].getNombre().equals(nombre)) {
+                contGuardados[i] = contGuardados[nContactos - 1];
+                nContactos--;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+}//
