@@ -1,15 +1,14 @@
 public class Agenda {
-
-    private Contactos[] contGuardados;
+    private Contacto[] contGuardados;
     private int nContactos;
 
     public Agenda(){
-        this.contGuardados = new Contactos[100];
+        this.contGuardados = new Contacto[100];
         this.nContactos = 0;
         
     }
 
-    public boolean añadirContacto(Contactos c){
+    public boolean añadirContacto(Contacto c){
         if (nContactos >= 100){
             System.out.println("La Agenda esta completa");
             return false;
@@ -60,8 +59,9 @@ public class Agenda {
         return -1;
     }
 
-    public Contactos getContacto(int indice) {
+    public Contacto getContacto(int indice) {
         return contGuardados[indice];
     }
+
 
 }//
