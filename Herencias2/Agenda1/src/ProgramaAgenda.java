@@ -59,7 +59,7 @@ public class ProgramaAgenda {
                     menu.listarContactos();
                     break;
 
-                case "5":
+                case "5"://salir
                 System.out.println("Saliendo del Programa");
                     break;
                 default:
