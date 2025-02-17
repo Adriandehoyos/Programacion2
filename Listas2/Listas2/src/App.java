@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
-        //ejercicio 1
+         //ejercicio 1
 
         Producto producto1 = new Producto("copas", 20);
         Producto producto2 = new Producto("tenedores", 15);
@@ -16,9 +16,9 @@ public class App {
 
         //ejercicio 2
 
-        ArrayList<Producto> productos = new ArrayList<Producto>();
+        LinkedList<Producto> productos = new LinkedList<Producto>();
 
-        //ejercicio 3
+         //ejercicio 3
 
         productos.add(producto1);
         productos.add(producto2);
@@ -33,6 +33,7 @@ public class App {
         while (itera.hasNext()) {
             p1 = itera.next();
             System.out.println(p1);
+            
         //ejercicio 5 eliminando con itera 
         if (p1.equals(producto4)) {
             itera.remove();
@@ -75,8 +76,5 @@ public class App {
 
 
     
-    
-    
-    
-    }//
-}//
+    }
+}
