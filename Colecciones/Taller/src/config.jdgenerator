@@ -1,0 +1,85 @@
+==== CONFIGS ====		
+{
+    "base_path": "c:\\Users\\User\\Documents\\Programacion2\\Colecciones\\Taller\\src",
+    "out": "c:\\Users\\User\\Documents\\Programacion2\\Colecciones\\Taller\\src\\javadoc",
+    "javadoc_executable": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.5.11-hotspot\\bin\\javadoc.exe",
+    "exclude": [],
+    "raw_params": ""
+}
+
+==== COMMAND ====
+"C:\Program Files\Eclipse Adoptium\jdk-21.0.5.11-hotspot\bin\javadoc.exe" 
+	-sourcepath "c:\Users\User\Documents\Programacion2\Colecciones\Taller\src" 
+	-d "c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc" 
+	"c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\App.java"
+	"c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Coche.java"
+	"c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java"
+
+
+==== JAVADOC OUTPUT ====
+Loading source file c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\App.java...
+Loading source file c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Coche.java...
+Loading source file c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java...
+Constructing Javadoc information...
+Creating destination directory: "c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\"
+Building index for all the packages and classes...
+Standard Doclet version 21.0.5+11-LTS
+Building tree for all the packages and classes...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\App.html...
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\App.java:3: warning: no comment
+public class App {
+       ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\App.java:3: warning: use of default constructor, which does not provide a comment
+public class App {
+       ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\App.java:4: warning: no comment
+    public static void main(String[] args) throws Exception {
+                       ^
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\Coche.html...
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Coche.java:1: warning: no comment
+public class Coche {
+       ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Coche.java:5: warning: no comment
+    public Coche(String color, String marca) {
+           ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Coche.java:10: warning: no comment
+    public String getColor() {
+                  ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Coche.java:14: warning: no comment
+    public String getMarca() {
+                  ^
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\Taller.html...
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java:4: warning: no comment
+public class Taller {
+       ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java:4: warning: use of default constructor, which does not provide a comment
+public class Taller {
+       ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java:19: warning: no comment
+    public String borrarCoche(String matricula) {
+                  ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java:9: warning: no comment
+    public String meterCoche(String matricula, String color, String marca) {
+                  ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java:32: warning: no comment
+    public void visualizaCoches() {
+                ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java:28: warning: no comment
+    public void visualizaMatriculas() {
+                ^
+c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\Taller.java:38: warning: no comment
+    public void visualizaTaller() {
+                ^
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\package-summary.html...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\package-tree.html...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\overview-tree.html...
+Building index for all classes...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\allclasses-index.html...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\allpackages-index.html...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\index-all.html...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\search.html...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\index.html...
+Generating c:\Users\User\Documents\Programacion2\Colecciones\Taller\src\javadoc\help-doc.html...
+14 warnings
+
+
