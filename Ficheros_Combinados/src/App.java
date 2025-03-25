@@ -1,6 +1,4 @@
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -38,31 +36,31 @@ public class App {
                 System.out.println(p);
             }
 
-            int i = 0;
-            boolean eof = false;
-            try(FileInputStream fichero = new FileInputStream("Recursos\\almacen.dat"); DataInputStream lector = new DataInputStream(fichero)) {
-                while (!eof) {
-                    int cantidad = lector.readInt();
-                    double precio = lector.readDouble();
-                    int descuento = lector.readInt();
-                    int IVA = lector.readInt();
-                    boolean aplicarDto = lector.readBoolean();
+            // int i = 0;
+            // boolean eof = false;
+            // try(FileInputStream fichero = new FileInputStream("Recursos\\\\almacen.dat"); DataInputStream lector = new DataInputStream(fichero)) {
+            //     while (!eof) {
+            //         int cantidad = lector.readInt();
+            //         double precio = lector.readDouble();
+            //         int descuento = lector.readInt();
+            //         int IVA = lector.readInt();
+            //         boolean aplicarDto = lector.readBoolean();
 
-                    productos.get(i).setCantidad(cantidad);
-                    productos.get(i).setPrecio(precio);
-                    productos.get(i).setDescuento(descuento);
-                    productos.get(i).setIva(IVA);
-                    productos.get(i).setAplicarDto(aplicarDto);
+            //         productos.get(i).setCantidad(cantidad);
+            //         productos.get(i).setPrecio(precio);
+            //         productos.get(i).setDescuento(descuento);
+            //         productos.get(i).setIva(IVA);
+            //         productos.get(i).setAplicarDto(aplicarDto);
                     
 
-                }
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+            //     }
+            // } catch (Exception e) {
+            //     // TODO: handle exception
+            // }
             
-            for(Producto p : productos){
-                System.out.println(p);
-            }
+            // for(Producto p : productos){
+            //     System.out.println(p);
+            // }
                 break;
         
             case "2":
