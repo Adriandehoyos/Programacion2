@@ -8,7 +8,7 @@ public class SQLDataBaseManager {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/";
-    private static final String SCHEMA = "no creado";
+    private static final String SCHEMA = "mercadaw";
     private static final String USUARIO = "developer";
     private static final String CLAVE = "1234";
 
