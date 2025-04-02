@@ -1,3 +1,5 @@
+package com.decroly;
+
 public class Producto {
 
     private int id;

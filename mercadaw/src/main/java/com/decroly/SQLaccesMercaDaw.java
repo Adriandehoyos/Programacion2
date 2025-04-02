@@ -32,32 +32,36 @@ public class SQLaccesMercaDaw {
 
     //Buscar producto por referencia
     
-    public List<CharacterDC> getCharacterByName(String characterName){
-        List<CharacterDC> charactersNames = new LinkedList<>();
+    public List<Producto> getProductoPorReferencia(String referencia){
+        List<Producto> buscarRefe = new LinkedList<>();
 
-        String sqlStatement = "SELECT * FROM characters where heroName = ?";
+        String sqlStatement = "SELECT * FROM producto WHERE referencia = ?";
 
         try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
-            statement.setString(1, characterName);
+            statement.setString(1, referencia);
             ResultSet dataSet = statement.executeQuery();
 
             while(dataSet.next()){
                 int id = dataSet.getInt(1);
-                String name = dataSet.getNString(2);
-                String fullname = dataSet.getNString(3);
-                String gender = dataSet.getNString(7);
-                String race = dataSet.getNString(8);
-                String aligment = dataSet.getNString(9);
+                String Referencia = dataSet.getNString(2);
+                String nombre = dataSet.getNString(3);
+                String descripcion = dataSet.getNString(4);
+                int Tipo = dataSet.getInt(5);
+                int cantidad = dataSet.getInt(6);
+                double precio = dataSet.getDouble(7);
+                int descuento = dataSet.getInt(8);
+                int iva = dataSet.getInt(9);
+                boolean aplicarDto = dataSet.getBoolean(10);
 
-                CharacterDC c1 =  new CharacterDC(id, name, fullname, gender, race, aligment);
-                charactersNames.add(c1);
+                Producto p1 =  new Producto(id, Referencia, nombre, descripcion, Tipo, cantidad, precio, descuento, iva, aplicarDto);
+                buscarRefe.add(p1);
             }
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return charactersNames;
+        return buscarRefe;
     }
 
 }
