@@ -56,6 +56,21 @@ public class Main {
 
                     // Código para buscar productos por tipo
                 case 3:
+                    reader.nextLine();
+                    List<Tipos> tipo = miMDdata.getTipos();
+
+                    for (Tipos pro : tipo){
+                        System.out.println(pro);
+                    }
+                    //Hasta aqui mostramos los tipos para que sepa que tipo quiere buscar
+                    System.out.println("\nIntroduce el numero del tipo que quieras buscar");
+                    int idTipo = reader.nextInt();
+                    List<Producto> busTipo = miMDdata.getProductoPorTipo(idTipo);
+                    for (Producto bProducto : busTipo) {
+                        System.out.println(bProducto);
+                    }
+
+
                     
                     break;
 
