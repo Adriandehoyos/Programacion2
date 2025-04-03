@@ -32,9 +32,9 @@ public class Main {
                 //Mostrar todos los Productos
                 case 1:
                     
-                    List<String> nombres = miMDdata.getallInfo();
+                    List<Producto> info = miMDdata.getallInfo();
 
-                    for (String pro : nombres){
+                    for (Producto pro : info){
                         System.out.println(pro);
                     }
                     break;
@@ -76,13 +76,82 @@ public class Main {
 
                     // Código para buscar producto por cantidad
                 case 4:
+                reader.nextLine();
+                try {
+                    System.out.println("Introduce una Cantidad");
+                    int cantidad = reader.nextInt();
+                    List<Producto> busRef = miMDdata.getProductoPorCantidad(cantidad);
+                    for (Producto bR : busRef) {
+                        System.out.println(bR);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                     
+
                     break;
-                case 5:
+
                     // Código para insertar un nuevo producto
+                case 5:
+                reader.nextLine();
+                try {
+                    System.out.println("\nInsertar un nuevo Producto");
+    
+                    System.out.print("Ingrese referencia (7 caracteres): ");
+                    String referencia = reader.nextLine();
+                    //En la base de datos he metido que la referencia sea unique para que no deje insertar si esta repita la referencia
+                    
+                    System.out.print("Ingrese nombre del producto: ");
+                    String nombre = reader.nextLine();
+            
+                    System.out.print("Ingrese descripción del producto: ");
+                    String descripcion = reader.nextLine();
+            
+                    System.out.print("Ingrese tipo (ID de tipo): ");
+                    int idtipo = reader.nextInt();
+            
+                    System.out.print("Ingrese cantidad disponible: ");
+                    int cantidad = reader.nextInt();
+            
+                    System.out.print("Ingrese precio del producto: ");
+                    double precio = reader.nextDouble();
+            
+                    System.out.print("Ingrese descuento aplicado: ");
+                    int descuento = reader.nextInt();
+            
+                    System.out.print("Ingrese valor del IVA: ");
+                    int iva = reader.nextInt();
+            
+                    System.out.print("¿Aplicar Descuento? (true/false): ");
+                    boolean aplicarDto = reader.nextBoolean();
+    
+                    Producto nuevoPro = new Producto(referencia, nombre, descripcion, idtipo, cantidad, precio, descuento, iva, aplicarDto);
+    
+                    int response2 = miMDdata.insertarProducto(nuevoPro);
+                    System.out.println("Se han insertado " + response2 + " elementos");
+    
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
-                case 6:
+
+
                     // Código para eliminar producto por referencia
+                case 6:
+                reader.nextLine();
+                    //Mostramos Los Productos con sus referencias
+                    List<String> infoElim = miMDdata.getInfoEliminar();
+
+                    for (String pro : infoElim){
+                        System.out.println(pro);
+                    }
+                    
+                    //Ahora Eliminamos
+                    System.out.println("Introduce la referencia del Producto que quieres eliminar");
+                    int refElim = reader.nextInt();
+                    int response = miMDdata.eliminarPorReferencia(refElim)  ;
+                    System.out.println("Se han borrado " + response + " elementos");
+
                     break;
                 case 7:
                     // Código para actualizar producto
