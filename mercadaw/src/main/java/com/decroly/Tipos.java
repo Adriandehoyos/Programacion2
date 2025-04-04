@@ -11,6 +11,10 @@ public class Tipos{
         this.nombre = nombre;
     }
 
+    public Tipos(String nombre) {
+        this.nombre = nombre;
+    }
+
 
     public int getId() {
         return id;

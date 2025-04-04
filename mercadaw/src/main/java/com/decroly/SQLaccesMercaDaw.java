@@ -197,8 +197,8 @@ public class SQLaccesMercaDaw {
 
         //eliminar producto por referencia
         //Pirmero un metodo para enseñar la referencia y el nombre de todos los productos
-        public List<String> getInfoEliminar(){
-            List<String> refYnombre = new LinkedList<>();
+        public List<Producto> getInfoEliminar(){
+            List<Producto> refYnombre = new LinkedList<>();
     
             String getAll = "SELECT referencia, nombre FROM producto";
     
@@ -206,8 +206,11 @@ public class SQLaccesMercaDaw {
             ResultSet dataSet = statement.executeQuery(getAll);) {
                 while(dataSet.next()){
 
-                    refYnombre.add(dataSet.getNString(1));
-                    refYnombre.add(dataSet.getNString(2));
+                    String Referencia = dataSet.getNString(1);
+                    String nombre = dataSet.getNString(2);
+
+                    Producto pRYF = new Producto(nombre, Referencia);
+                    refYnombre.add(pRYF);
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -215,14 +218,14 @@ public class SQLaccesMercaDaw {
             return refYnombre;
         }
         //Metodo para eliminar
-        public int eliminarPorReferencia(int referencia){
+        public int eliminarPorReferencia(String referencia){
             int elements = -1;
     
             String sqlStatement = "DELETE FROM producto where referencia = ?";
     
             try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);){
     
-                statement.setInt(1, referencia);
+                statement.setNString(1, referencia);
                 
                 elements = statement.executeUpdate();
                 
@@ -232,4 +235,39 @@ public class SQLaccesMercaDaw {
             return elements;
         }
 
+        //Actualizar producto (descripción, cantidad, precio, descuento, AplicarDto)
+        public int updateProductobyRef(Producto pro){
+            int response = -1;
+            String sqlStatement = "UPDATE producto set descripcion = ? , cantidad = ? , precio = ? , aplicarDto = ? where referencia = ?";
+    
+            try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+                statement.setNString(1, pro.getDescripcion());
+                statement.setInt(2, pro.getCantidad());
+                statement.setDouble(3, pro.getPrecio());
+                statement.setBoolean(4, pro.isAplicarDto());
+                statement.setNString(5, pro.getReferencia());
+    
+                statement.executeUpdate();
+                
+            } catch (Exception e) {
+                System.out.println("No se pudo actualizar el Producto: "+e.getMessage());        }
+            return response;
+        }
+
+        //añadir nuevo tipo 
+        public int insertarTipo(Tipos nTipo){
+            int responseT = -1;
+            String sqlStatement = "INSERT INTO tipos ( nombre )" + "VALUES (?)";
+    
+            try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+    
+                statement.setNString(1, nTipo.getNombre());
+                responseT = statement.executeUpdate();
+    
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+    
+            return responseT;
+        }
 }//

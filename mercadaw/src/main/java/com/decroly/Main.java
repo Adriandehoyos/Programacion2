@@ -41,7 +41,7 @@ public class Main {
 
                     // Código para buscar producto por referencia
                 case 2:
-                reader.nextLine();
+                reader = new Scanner(System.in);
                     try {
                         System.out.println("Introduce una referencia = REF0000 ");
                         String ref = reader.nextLine();
@@ -56,7 +56,7 @@ public class Main {
 
                     // Código para buscar productos por tipo
                 case 3:
-                    reader.nextLine();
+                reader = new Scanner(System.in);
                     List<Tipos> tipo = miMDdata.getTipos();
 
                     for (Tipos pro : tipo){
@@ -69,31 +69,24 @@ public class Main {
                     for (Producto bProducto : busTipo) {
                         System.out.println(bProducto);
                     }
-
-
                     
                     break;
 
                     // Código para buscar producto por cantidad
                 case 4:
-                reader.nextLine();
-                try {
+                reader = new Scanner(System.in);
                     System.out.println("Introduce una Cantidad");
-                    int cantidad = reader.nextInt();
-                    List<Producto> busRef = miMDdata.getProductoPorCantidad(cantidad);
+                    int bCantidad = reader.nextInt();
+                    List<Producto> busRef = miMDdata.getProductoPorCantidad(bCantidad);
                     for (Producto bR : busRef) {
                         System.out.println(bR);
                     }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                    
-
                     break;
+
 
                     // Código para insertar un nuevo producto
                 case 5:
-                reader.nextLine();
+                reader = new Scanner(System.in);
                 try {
                     System.out.println("\nInsertar un nuevo Producto");
     
@@ -138,26 +131,70 @@ public class Main {
 
                     // Código para eliminar producto por referencia
                 case 6:
-                reader.nextLine();
+                reader = new Scanner(System.in);
                     //Mostramos Los Productos con sus referencias
-                    List<String> infoElim = miMDdata.getInfoEliminar();
+                    List<Producto> infoElim = miMDdata.getInfoEliminar();
 
-                    for (String pro : infoElim){
-                        System.out.println(pro);
+                    for (Producto pro : infoElim){
+                        System.out.println("Producto con su Referencia = [" + pro.getReferencia() + " --- " +pro.getNombre() + "]");
                     }
                     
                     //Ahora Eliminamos
                     System.out.println("Introduce la referencia del Producto que quieres eliminar");
-                    int refElim = reader.nextInt();
+                    String refElim = reader.nextLine();
                     int response = miMDdata.eliminarPorReferencia(refElim)  ;
                     System.out.println("Se han borrado " + response + " elementos");
 
                     break;
-                case 7:
+
                     // Código para actualizar producto
+                case 7:
+                    //Mostramos los productos con su referencia para que elija el producto que quiere modificar
+                    List<Producto> infoActualizar = miMDdata.getInfoEliminar();
+
+                    for (Producto pro : infoActualizar){
+                        System.out.println("Producto con su Referencia = [" + pro.getReferencia() + " --- " +pro.getNombre() + "]");
+                    }
+                    //Cogemos los datos del update
+                    reader = new Scanner(System.in);
+                    System.out.println("Elige la referencia del Producto que quieres actualizar: ");
+                    String refActu = reader.nextLine();
+
+                    System.out.println("Introduce su nueva descripcion: ");
+                    String nDescripcion = reader.nextLine();
+
+                    System.out.println("Introduce su nueva cantidad: ");
+                    int nCantidad = reader.nextInt();
+
+                    System.out.println("Introduce su nuevo precio: ");
+                    double nPre = reader.nextDouble();
+
+                    System.out.println("Se aplica Descuento (true/false): ");
+                    boolean nAplicarDto = reader.nextBoolean();
+
+                    Producto actProducto = new Producto(refActu, nDescripcion, nCantidad, nPre, nAplicarDto);
+                    miMDdata.updateProductobyRef(actProducto);
+
                     break;
-                case 8:
+
                     // Código para insertar un nuevo tipo de producto
+                case 8:
+                reader = new Scanner(System.in);
+                    System.out.println("Introduce el nuevo tipo: ");
+                    String nuevoTipo = reader.nextLine();
+
+                    Tipos nt = new Tipos(nuevoTipo);
+    
+                    int responseT = miMDdata.insertarTipo(nt);
+                    System.out.println("Se han insertado " + responseT + " elementos");
+
+                    //Mostramos los tipos actualizados
+                    List<Tipos> tipoN = miMDdata.getTipos();
+
+                    for (Tipos pro : tipoN){
+                        System.out.println(pro);
+                    }
+
                     break;
                 case 9:
                     System.out.println("Saliendo del programa...");

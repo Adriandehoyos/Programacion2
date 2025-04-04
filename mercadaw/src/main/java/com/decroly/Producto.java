@@ -46,7 +46,16 @@ public class Producto {
         this.referencia = referencia;
     }
 
+    
 
+
+    public Producto(String referencia, String descripcion, int cantidad, double precio, boolean aplicarDto) {
+        this.referencia =referencia;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.aplicarDto = aplicarDto;
+    }
 
     public int getId() {
         return id;
@@ -112,6 +121,17 @@ public class Producto {
         this.aplicarDto = aplicarDto;
     }
 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 
     @Override
     public String toString() {
