@@ -1,26 +1,27 @@
 package com.decroly;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class VideoJuego extends Articulo {
 
-    private GeneroVideoJuego genero;
-    private LocalDate fechaAlquiler;
+    private int genero;
+    private Date fechaAlquiler;
     private boolean isAlquilada;
 
-    public VideoJuego(String cod, String titulo, LocalDate fechaRegistro, LocalDate fechaBaja, GeneroVideoJuego genero,
-            LocalDate fechaAlquiler, boolean isAlquilada) {
+    public VideoJuego(String cod, String titulo, Date fechaRegistro, Date fechaBaja, int genero,
+        Date fechaAlquiler, boolean isAlquilada) {
         super(cod, titulo, fechaRegistro, fechaBaja);
         this.genero = genero;
         this.fechaAlquiler = fechaAlquiler;
         this.isAlquilada = isAlquilada;
     }
 
-    public GeneroVideoJuego getGenero() {
+    public int getGenero() {
         return genero;
     }
 
-    public LocalDate getFechaAlquiler() {
+
+    public Date getFechaAlquiler() {
         return fechaAlquiler;
     }
 
@@ -28,7 +29,7 @@ public class VideoJuego extends Articulo {
         return isAlquilada;
     }
 
-    public void setFechaAlquiler(LocalDate fechaAlquiler) {
+    public void setFechaAlquiler(Date fechaAlquiler) {
         this.fechaAlquiler = fechaAlquiler;
     }
 
@@ -41,6 +42,7 @@ public class VideoJuego extends Articulo {
         return "VideoJuego [genero=" + genero + ", fechaAlquiler=" + fechaAlquiler + ", isAlquilada=" + isAlquilada
                 + "]";
     }
+
 
     
     

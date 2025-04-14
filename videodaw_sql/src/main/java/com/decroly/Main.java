@@ -11,7 +11,7 @@ public class Main {
         do {
             System.out.println("\nMenú de VideoClub");
             System.out.println("1. Crear y registrar VideoClub en la franquicia.");
-            System.out.println("2. Registrar película en videoclub.");
+            System.out.println("2. Registrar película o Videojuego en videoclub.");
             System.out.println("3. Crear y registrar cliente en videoclub.");
             System.out.println("4. Alquilar.");
             System.out.println("5. Devolver.");
@@ -44,7 +44,7 @@ public class Main {
 
 
 
-                case 2:// Código para registrar película
+                case 2:// Código para registrar película o videojuego
                     
                 System.out.println();
 

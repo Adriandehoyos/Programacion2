@@ -1,16 +1,16 @@
 package com.decroly;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Articulo {
 
     protected String cod;
     protected String titulo;
-    protected LocalDate fechaRegistro;
-    protected LocalDate fechaBaja;
+    protected Date fechaRegistro;
+    protected Date fechaBaja;
 
     
-    public Articulo(String cod, String titulo, LocalDate fechaRegistro, LocalDate fechaBaja) {
+    public Articulo(String cod, String titulo, Date fechaRegistro, Date fechaBaja) {
         this.cod = cod;
         this.titulo = titulo;
         this.fechaRegistro = fechaRegistro;
@@ -28,17 +28,17 @@ public class Articulo {
     }
 
 
-    public LocalDate getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
 
-    public LocalDate getFechaBaja() {
+    public Date getFechaBaja() {
         return fechaBaja;
     }
 
 
-    public void setFechaBaja(LocalDate fechaBaja) {
+    public void setFechaBaja(Date fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
 

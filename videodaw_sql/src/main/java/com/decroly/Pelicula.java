@@ -1,16 +1,16 @@
 package com.decroly;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Pelicula extends Articulo{
 
-    private GenerosPelicula genero;
-    private LocalDate fechaAlquiler;
+    private int genero;
+    private Date fechaAlquiler;
     private boolean isAlquilada;
 
     
-    public Pelicula(String cod, String titulo, LocalDate fechaRegistro, LocalDate fechaBaja, GenerosPelicula genero,
-            LocalDate fechaAlquiler, boolean isAlquilada) {
+    public Pelicula(String cod, String titulo, Date fechaRegistro, Date fechaBaja, int genero,
+            Date fechaAlquiler, boolean isAlquilada) {
         super(cod, titulo, fechaRegistro, fechaBaja);
         this.genero = genero;
         this.fechaAlquiler = fechaAlquiler;
@@ -18,12 +18,12 @@ public class Pelicula extends Articulo{
     }
 
 
-    public GenerosPelicula getGenero() {
+    public int getGenero() {
         return genero;
     }
 
 
-    public LocalDate getFechaAlquiler() {
+    public Date getFechaAlquiler() {
         return fechaAlquiler;
     }
 
@@ -33,7 +33,7 @@ public class Pelicula extends Articulo{
     }
 
 
-    public void setFechaAlquiler(LocalDate fechaAlquiler) {
+    public void setFechaAlquiler(Date fechaAlquiler) {
         this.fechaAlquiler = fechaAlquiler;
     }
 
@@ -47,6 +47,8 @@ public class Pelicula extends Articulo{
     public String toString() {
         return "Pelicula [genero=" + genero + ", fechaAlquiler=" + fechaAlquiler + ", isAlquilada=" + isAlquilada + "]";
     }
+
+
 
     
 
