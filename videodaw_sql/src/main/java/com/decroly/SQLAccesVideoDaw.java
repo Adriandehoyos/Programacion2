@@ -81,6 +81,115 @@ public class SQLAccesVideoDaw {
         return infoArticulos;
     }
 
+    //Metodo para crear Pelicula
+    public int insertarPelicula(Pelicula nuevoP){
+
+        int response = -1;
+
+            String sqlStatement = "INSERT INTO Pelicula (cod, genero)" + "VALUES (?, ?)";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+    
+                statement.setNString(1, nuevoP.getCod());
+                statement.setInt(2, nuevoP.getGenero());
+                
+                
+                response = statement.executeUpdate();
+    
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+    
+            return response;
+        }
+
+    //Metodo para crear videojuego
+    public int insertarVideojuego(VideoJuego nuevoV){
+
+        int response = -1;
+
+            String sqlStatement = "INSERT INTO Videojuego (cod, genero)" + "VALUES (?, ?)";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+    
+                statement.setNString(1, nuevoV.getCod());
+                statement.setInt(2, nuevoV.getGenero());
+                
+                
+                response = statement.executeUpdate();
+    
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+    
+            return response;
+        }
+
+    //Metodos para mostrar los generos de pelicula y videojuego (2 metodos diferentes)
+    public List<GenerosP> getGenerosPeli(){
+        List<GenerosP> tiposPeli = new LinkedList<>();
+
+        String getAll = "SELECT * FROM generosP";
+
+        try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+        ResultSet dataSet = statement.executeQuery(getAll);) {
+            while(dataSet.next()){
+                int cod = dataSet.getInt(1);
+                String tipos = dataSet.getNString(2);
+
+                GenerosP pinfo =  new GenerosP(cod, tipos);
+                tiposPeli.add(pinfo);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return tiposPeli;
+    }
+
+
+    public List<GenerosV> getGenerosVideojuego(){
+        List<GenerosV> tiposVideojuego = new LinkedList<>();
+
+        String getAll = "SELECT * FROM generosV";
+
+        try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+        ResultSet dataSet = statement.executeQuery(getAll);) {
+            while(dataSet.next()){
+                int cod = dataSet.getInt(1);
+                String tipos = dataSet.getNString(2);
+
+                GenerosV vinfo =  new GenerosV(cod, tipos);
+                tiposVideojuego.add(vinfo);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return tiposVideojuego;
+    }
+
+
+    //Metodo insertar persona
+    //Generar automaticamente nuevo numSocio
+    public String generarNuevoNumSocio(){
+        String nuevoNumero = "";
+        String sqlStatement = "SELECT cod FROM Articulo ORDER BY cod DESC LIMIT 1";
+    
+        try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+        ResultSet dataSet = statement.executeQuery(sqlStatement);) {
+            if (dataSet.next()){
+            String ultimoNumero = dataSet.getString("cod");
+            int numero = Integer.parseInt(ultimoNumero.substring(1));//le quitamos la s del principio aqui
+            numero++;
+
+            nuevoNumero = String.format("A%04d", numero); //Le damos el formato de nuevo
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return nuevoNumero;
+    }
 
 
 
