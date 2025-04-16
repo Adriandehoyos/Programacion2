@@ -35,7 +35,6 @@ public class SQLAccesVideoDaw {
 
         //crear y registrar nueva Pelicula o videojuego
         //Primero vamos a crear un articulo
-
         public int insertarArticulo(Articulo nuevoA){
 
             int response = -1;
@@ -55,6 +54,27 @@ public class SQLAccesVideoDaw {
                 }
         
                 return response;
+            }
+            //generamos el cod del articulo automaticamente
+            public String generarcod(){
+                String nuevoNumero = "";
+                String sqlStatement = "SELECT cod FROM Articulo ORDER BY cod DESC LIMIT 1";
+            
+                try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+                ResultSet dataSet = statement.executeQuery(sqlStatement);) {
+                    if (dataSet.next()){
+                    String ultimoNumero = dataSet.getString("cod");
+                    int numero = Integer.parseInt(ultimoNumero.substring(1));//le quitamos la A del principio aqui
+                    numero++;
+        
+                    nuevoNumero = String.format("A%04d", numero); //Le damos el formato de nuevo
+        
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+        
+                return nuevoNumero;
             }
 
         //Ahora metodo para mostrar los articulos
@@ -170,18 +190,18 @@ public class SQLAccesVideoDaw {
 
     //Metodo insertar persona
     //Generar automaticamente nuevo numSocio
-    public String generarNuevoNumSocio(){
+    public String generarNumSocio(){
         String nuevoNumero = "";
-        String sqlStatement = "SELECT cod FROM Articulo ORDER BY cod DESC LIMIT 1";
+        String sqlStatement = "SELECT numSocio FROM cliente ORDER BY numSocio DESC LIMIT 1";
     
         try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
         ResultSet dataSet = statement.executeQuery(sqlStatement);) {
             if (dataSet.next()){
-            String ultimoNumero = dataSet.getString("cod");
+            String ultimoNumero = dataSet.getString("numSocio");
             int numero = Integer.parseInt(ultimoNumero.substring(1));//le quitamos la s del principio aqui
             numero++;
 
-            nuevoNumero = String.format("A%04d", numero); //Le damos el formato de nuevo
+            nuevoNumero = String.format("S%04d", numero); //Le damos el formato de nuevo
 
             }
         } catch (Exception e) {
@@ -190,6 +210,9 @@ public class SQLAccesVideoDaw {
 
         return nuevoNumero;
     }
+
+    //Primero el metodo de crear Persona
+    
 
 
 

@@ -49,28 +49,15 @@ public class Main {
                 case 2:// Código para registrar película
                 //Creamos el articulo primero
                 reader = new Scanner(System.in);//Limpiar buffer
-                System.out.println("Primero vamos a crear un articulo: ");
-                System.out.println("Introduce la referencia para el articulo(A0000): ");
-                String cod = miMDdata.generarNuevoNumSocio();
+                String cod = miMDdata.generarcod();
 
-                System.out.println("Introduce el titulo: ");
+                System.out.println("Introduce el titulo de la Pelicula: ");
                 String titulo = reader.nextLine();
 
                 Articulo a1 = new Articulo(cod, titulo, null, null);
-                int response2 = miMDdata.insertarArticulo(a1);
-                System.out.println("Se han insertado " + response2 + " elementos");
-
-                //Ahora vamos a mostrar los articulos para que elija la referencia para la pelicula
-                List<Articulo> info = miMDdata.getInfoArticulos();
-                for (Articulo art : info) {
-                    System.out.println(art);
-                }
+                miMDdata.insertarArticulo(a1);
 
                 //Ahora pasamos los datos para crear la pelicula
-                reader = new Scanner(System.in);//Limpiar buffer
-                System.out.println("Cual es la referencia de la pelicula que quieres registrar(A0000): ");
-                String codNP = reader.nextLine();
-
                 //Mostramos los generos de Pelicula
                 List<GenerosP> infoGP = miMDdata.getGenerosPeli();
                 for (GenerosP infGenerosP : infoGP) {
@@ -79,9 +66,9 @@ public class Main {
                 System.out.println("Elige el genero de la Pelicula: ");
                 int generoNP = reader.nextInt();
 
-                Pelicula p1 = new Pelicula(codNP, titulo, null, null, generoNP, null, false);
-                int response3 = miMDdata.insertarPelicula(p1);
-                System.out.println("Se han insertado " + response3 + " elementos");
+                Pelicula p1 = new Pelicula(cod, titulo, null, null, generoNP, null, false);
+                int response2 = miMDdata.insertarPelicula(p1);
+                System.out.println("Se han insertado " + response2 + " elementos");
                     break;
 
 
@@ -89,28 +76,15 @@ public class Main {
                 case 3:
                 //Creamos el articulo primero
                 reader = new Scanner(System.in);//Limpiar buffer
-                System.out.println("Primero vamos a crear un articulo: ");
-                System.out.println("Introduce la referencia para el articulo(A0000): ");
-                String cod2 = reader.nextLine();
+                String cod2 = miMDdata.generarcod();
 
                 System.out.println("Introduce el titulo: ");
                 String titulo2 = reader.nextLine();
 
                 Articulo a2 = new Articulo(cod2, titulo2, null, null);
-                int response4 = miMDdata.insertarArticulo(a2);
-                System.out.println("Se han insertado " + response4 + " elementos");
-
-                //Ahora vamos a mostrar los articulos para que elija la referencia para el videojuego
-                List<Articulo> info2 = miMDdata.getInfoArticulos();
-                for (Articulo art : info2) {
-                    System.out.println(art);
-                }
+                miMDdata.insertarArticulo(a2);
 
                 //Ahora pasamos los datos del videojuego
-                reader = new Scanner(System.in);//Limpiar buffer
-                System.out.println("Cual es la referencia del VideoJuego que quieres registrar(A0000): ");
-                String codNV = reader.nextLine();
-
                 //Mostramos los generos de Pelicula
                 List<GenerosV> infoGV = miMDdata.getGenerosVideojuego();
                 for (GenerosV infGenerosV : infoGV) {
@@ -119,13 +93,16 @@ public class Main {
                 System.out.println("Elige el genero de la Pelicula: ");
                 int generoNV = reader.nextInt();
 
-                VideoJuego vN1 = new VideoJuego(codNV, titulo2, null, null, generoNV, null, false);
-                int response5 = miMDdata.insertarVideojuego(vN1);
-                System.out.println("Se han insertado " + response5 + " elementos");
+                VideoJuego vN1 = new VideoJuego(cod2, titulo2, null, null, generoNV, null, false);
+                int response3 = miMDdata.insertarVideojuego(vN1);
+                System.out.println("Se han insertado " + response3 + " elementos");
 
                     break;
+
+                // Código para registrar cliente
                 case 4:
-                    // Código para registrar cliente
+
+                
                     break;
                 case 5:
                     // Código para alquilar
