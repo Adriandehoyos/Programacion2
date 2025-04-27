@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -88,8 +88,8 @@ public class SQLAccesVideoDaw {
             while(dataSet.next()){
                 String cod = dataSet.getNString(1);
                 String titulo = dataSet.getNString(2);
-                Date fechaRegistro = dataSet.getDate(3);
-                Date fechaBaja = dataSet.getDate(4);
+                LocalDate fechaRegistro = dataSet.getDate(3).toLocalDate();
+                LocalDate fechaBaja = dataSet.getDate(4).toLocalDate();
 
 
                 Articulo a1 =  new Articulo(cod, titulo, fechaRegistro, fechaBaja);
@@ -212,9 +212,51 @@ public class SQLAccesVideoDaw {
     }
 
     //Primero el metodo de crear Persona
+    public int insertarPersona(Persona nuevaP){
+
+        int response = -1;
+
+            String sqlStatement = "INSERT INTO Persona (dni, nombre, direccion, fecha_nacimiento)" + "VALUES (?, ?, ?, ?)";
     
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+    
+                statement.setNString(1, nuevaP.getDni());
+                statement.setNString(2, nuevaP.getNombre());
+                statement.setNString(3, nuevaP.getDireccion());
+                statement.setDate(4, java.sql.Date.valueOf(nuevaP.getFechaNacimiento()));
+                
+                response = statement.executeUpdate();
+    
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+    
+            return response;
+        }
 
+    //Metodo para crear cliente
+    public int insertarCliente(Cliente nuevoC){
 
+        int response = -1;
+
+            String sqlStatement = "INSERT INTO Cliente (numSocio, dni)" + "VALUES (?, ?)";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+    
+                statement.setNString(1, nuevoC.getNumSocio());
+                statement.setNString(2, nuevoC.getDni());
+
+                
+                response = statement.executeUpdate();
+    
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+    
+            return response;
+        }
+
+        //Metodos para mostrar peliculas o videojuegos
 
 
 

@@ -1,5 +1,9 @@
 package com.decroly;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,16 +13,23 @@ public class Main {
         Scanner reader = new Scanner(System.in);
         int opcion;
         SQLAccesVideoDaw miMDdata = new SQLAccesVideoDaw();
+
+        final String patronDNI = "[0-9]{8}[A-Z]{1}"; //Patron para el DNI
+        final String patronCIF = "[A-Z]{1}[0-9]{8}"; //Patron para el CIF
+
+
+
+
         do {
             System.out.println("\nMenú de VideoClub");
             System.out.println("1. Crear y registrar VideoClub en la franquicia.");
             System.out.println("2. Registrar Película en el videoclub.");
             System.out.println("3. Registrar Videojuego en el Videoclub");
-            System.out.println("3. Crear y registrar cliente en videoclub.");
-            System.out.println("4. Alquilar.");
-            System.out.println("5. Devolver.");
-            System.out.println("6. Dar de baja cliente.");
-            System.out.println("7. Dar de baja articulo.");
+            System.out.println("4. Crear y registrar cliente en videoclub.");
+            System.out.println("5. Alquilar.");
+            System.out.println("6. Devolver.");
+            System.out.println("7. Dar de baja cliente.");
+            System.out.println("8. Dar de baja articulo.");
             System.out.println("9. Salir. Termina el programa.");
             System.out.print("Seleccione una opción: ");
             
@@ -32,8 +43,7 @@ public class Main {
             switch (opcion) {
                 case 1:// Código para crear y registrar VideoClub
                 reader = new Scanner(System.in);//Limpiar buffer
-                    System.out.println("Introduce el CIF del VideoClub (A12345678) ");
-                    String cif = reader.nextLine();
+                    String cif = myUtils.comprobarPatronRepetidamente(patronCIF, "Introduce el CIF del VideoClub (A12345678) ");
 
                     System.out.println("Donde esta ubicado el VideoClub(Direccion): ");
                     String direccion = reader.nextLine();
@@ -101,11 +111,57 @@ public class Main {
 
                 // Código para registrar cliente
                 case 4:
+                reader = new Scanner(System.in);//Limpiar buffer
+                //Primero los datos de persona
+                String dni = myUtils.comprobarPatronRepetidamente(patronDNI, "Introduce el DNI del Cliente; ");
+                String nombreP = myUtils.leerTextoPantalla("Como se llama el Cliente: ");
+                String direccionP = myUtils.leerTextoPantalla("Cual es su direccion: ");
+                String fechaInput = myUtils.leerTextoPantalla("Cual es su fecha de nacimiento (YYYY-MM-DD): ");
 
-                
+                LocalDate fechaNacimiento = LocalDate.parse(fechaInput);
+
+                Persona per1 = new Persona(dni, nombreP, direccionP, fechaNacimiento);
+                miMDdata.insertarPersona(per1);
+
+                //Ahora creamos el cliente y mostramos si se ha insertado
+                String numSocio = miMDdata.generarNumSocio();
+
+                Cliente cli1 = new Cliente(dni, nombreP, direccionP, fechaNacimiento, numSocio, fechaNacimiento,0);
+                int response4 = miMDdata.insertarCliente(cli1);
+                System.out.println("Se han insertado " + response4 + " elementos");
                     break;
+
+                // Código para alquilar
                 case 5:
-                    // Código para alquilar
+                System.out.println("1-Alquilar Pelicula");
+                System.out.println("2-Alquilar VideoJuego");
+                String menu = reader.nextLine();
+
+                if(menu.equals("1")){
+                        String getAll = "SELECT articulo.titulo, pelicula.cod, pelicula.isAlquilada " +
+                        "FROM pelicula "+
+                        "INNER JOIN articulo ON pelicula.cod = articulo.cod "+ 
+                        "Where pelicula.isAlquilada = false";
+                        //la consulta de mySQL que solo muestra los articulos que son peliculas y no estan alquiladas con su titulo y codigo
+                        try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+                        ResultSet dataSet = statement.executeQuery(getAll);) {
+                            while(dataSet.next()){
+                                String TituloP = dataSet.getNString(1);
+                                String codP = dataSet.getNString(2);
+                                Boolean alquilado = dataSet.getBoolean(3);
+
+                                System.out.println(TituloP + " -- Codigo = "+codP + " -- Esta alquilada = " +alquilado);
+
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                        
+                }else if(menu.equals("2")){
+
+                }
+
                     break;
                 case 6:
                     // Código para devolver
