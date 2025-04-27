@@ -133,11 +133,13 @@ public class Main {
 
                 // Código para alquilar
                 case 5:
-                System.out.println("1-Alquilar Pelicula");
-                System.out.println("2-Alquilar VideoJuego");
+                System.out.println("1. Alquilar Pelicula");
+                System.out.println("2. Alquilar VideoJuego");
                 String menu = reader.nextLine();
 
+                //Codigo Alquilar Pelicula
                 if(menu.equals("1")){
+                    //Enseñamos las Peliculas
                         String getAll = "SELECT articulo.titulo, pelicula.cod, pelicula.isAlquilada " +
                         "FROM pelicula "+
                         "INNER JOIN articulo ON pelicula.cod = articulo.cod "+ 
@@ -157,15 +159,109 @@ public class Main {
                             System.out.println(e.getMessage());
                         }
 
+                        //Pedimos el codigo de la Pelicula que quiere alquilar
+                        String codAlquilarP = myUtils.leerTextoPantalla("Cual es el codigo de la Pelicula que quieres alquilar: ");
+
+                        miMDdata.alquilarPelicula(codAlquilarP);
                         
+
+                //Codigo alquilar VideoJuego
                 }else if(menu.equals("2")){
+                    //Enseñamos los videojuegos
+                    String getAll = "SELECT articulo.titulo, videojuego.cod, videojuego.isAlquilada " +
+                    "FROM videojuego "+
+                    "INNER JOIN articulo ON videojuego.cod = articulo.cod "+ 
+                    "Where videojuego.isAlquilada = false";
+                    //la consulta de mySQL que solo muestra los articulos que son videojuegos y no estan alquilados con su titulo y codigo
+                    try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+                    ResultSet dataSet = statement.executeQuery(getAll);) {
+                        while(dataSet.next()){
+                            String TituloP = dataSet.getNString(1);
+                            String codP = dataSet.getNString(2);
+                            Boolean alquilado = dataSet.getBoolean(3);
+
+                            System.out.println(TituloP + " -- Codigo = "+codP + " -- Esta alquilada = " +alquilado);
+
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
+                    //Pedimos el cod del Videojuego
+                    String codAlquilarV = myUtils.leerTextoPantalla("Cual es el codigo del Videojuego que quieres alquilar: ");
+
+                    miMDdata.alquilarVideojuego(codAlquilarV);
+                }
+                    break;
+
+
+                // Código para devolver
+                case 6:
+                System.out.println("1. Devolver Pelicula");
+                System.out.println("2. Devolver VideoJuego");
+                String menu2 = reader.nextLine();
+
+                //Codigo devolver Pelicula
+                if(menu2.equals("1")){
+                    //Enseñamos las Peliculas
+                    String getAll = "SELECT articulo.titulo, pelicula.cod, pelicula.isAlquilada " +
+                    "FROM pelicula "+
+                    "INNER JOIN articulo ON pelicula.cod = articulo.cod "+ 
+                    "Where pelicula.isAlquilada = true";
+                    //la consulta de mySQL que solo muestra los articulos que son peliculas y que estan alquiladas con su titulo y codigo
+                    try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+                    ResultSet dataSet = statement.executeQuery(getAll);) {
+                        while(dataSet.next()){
+                            String TituloP = dataSet.getNString(1);
+                            String codP = dataSet.getNString(2);
+                            Boolean alquilado = dataSet.getBoolean(3);
+
+                            System.out.println(TituloP + " -- Codigo = "+codP + " -- Esta alquilada = " +alquilado);
+
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    //Pedimos el cod y lo pasamos por el update
+                    String codDevolverP = myUtils.leerTextoPantalla("Introduce el codigo de la Pelicula que quieres devolver: ");
+
+                    miMDdata.devolverPelicula(codDevolverP);
 
                 }
 
+
+                //Codigo devolver VideoJuego
+                else if (menu2.equals("2")){
+                    //Enseñamos los videojuegos
+                    String getAll = "SELECT articulo.titulo, videojuego.cod, videojuego.isAlquilada " +
+                    "FROM videojuego "+
+                    "INNER JOIN articulo ON videojuego.cod = articulo.cod "+ 
+                    "Where videojuego.isAlquilada = true";
+                    //la consulta de mySQL que solo muestra los articulos que son videojuegos y que estan alquilados con su titulo y codigo
+                    try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+                    ResultSet dataSet = statement.executeQuery(getAll);) {
+                        while(dataSet.next()){
+                            String TituloP = dataSet.getNString(1);
+                            String codP = dataSet.getNString(2);
+                            Boolean alquilado = dataSet.getBoolean(3);
+
+                            System.out.println(TituloP + " -- Codigo = "+codP + " -- Esta alquilada = " +alquilado);
+
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    //Pedimos el cod y lo pasamos por el update
+                    String codDevolverV = myUtils.leerTextoPantalla("Introduce el codigo del VideoJuego que quieres devolver: ");
+
+                    miMDdata.devolverVideojuego(codDevolverV);
+
+                }
                     break;
-                case 6:
-                    // Código para devolver
-                    break;
+
+
                 case 7:
                     // Código para dar de baja cliente
                     break;

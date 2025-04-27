@@ -19,6 +19,8 @@ public class Pelicula extends Articulo{
 
 
 
+
+
     public int getGenero() {
         return genero;
     }

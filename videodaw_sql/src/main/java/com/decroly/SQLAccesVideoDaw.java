@@ -256,7 +256,68 @@ public class SQLAccesVideoDaw {
             return response;
         }
 
-        //Metodos para mostrar peliculas o videojuegos
+        //Metodos para alquilar pelicula y videojuego
+
+        public int alquilarPelicula(String alqP){
+            int response = -1;
+            String sqlStatement = "UPDATE Pelicula set isAlquilada = true WHERE cod = ?";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+                statement.setNString(1, alqP);
+                statement.executeUpdate();
+                
+            } catch (Exception e) {
+                System.out.println("No se pudo actualizar el Producto: "+e.getMessage());        }
+            return response;
+        }
+
+        //El de Videojuego
+        public int alquilarVideojuego(String alqV){
+            int response = -1;
+            String sqlStatement = "UPDATE Videojuego set isAlquilada = true WHERE cod = ?";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+                statement.setNString(1, alqV);
+                statement.executeUpdate();
+                
+            } catch (Exception e) {
+                System.out.println("No se pudo actualizar el Producto: "+e.getMessage());        }
+            return response;
+        }
+
+
+        //Metodos para devolver pelicula y videojuego
+
+        public int devolverPelicula(String dvlP){
+            int response = -1;
+            String sqlStatement = "UPDATE Pelicula set isAlquilada = false WHERE cod = ?";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+                statement.setNString(1, dvlP);
+                statement.executeUpdate();
+                
+            } catch (Exception e) {
+                System.out.println("No se pudo actualizar el Producto: "+e.getMessage());        }
+            return response;
+        }
+
+        //El de Videojuego
+        public int devolverVideojuego(String dvlV){
+            int response = -1;
+            String sqlStatement = "UPDATE Videojuego set isAlquilada = false WHERE cod = ?";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+                statement.setNString(1, dvlV);
+                statement.executeUpdate();
+                
+            } catch (Exception e) {
+                System.out.println("No se pudo actualizar el Producto: "+e.getMessage());        }
+            return response;
+        }
 
 
 
