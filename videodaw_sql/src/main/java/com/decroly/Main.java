@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class Main {
 
         final String patronDNI = "[0-9]{8}[A-Z]{1}"; //Patron para el DNI
         final String patronCIF = "[A-Z]{1}[0-9]{8}"; //Patron para el CIF
-
+        List<Cliente> clLista = new LinkedList<>();
 
 
 
@@ -139,12 +140,13 @@ public class Main {
 
                 //Codigo Alquilar Pelicula
                 if(menu.equals("1")){
+                reader = new Scanner(System.in);//Limpiar buffer
                     //Enseñamos las Peliculas
-                        String getAll = "SELECT articulo.titulo, pelicula.cod, pelicula.isAlquilada " +
+                        String getAll = "SELECT articulo.titulo, pelicula.cod, pelicula.isAlquilada, articulo.fechabaja " +
                         "FROM pelicula "+
                         "INNER JOIN articulo ON pelicula.cod = articulo.cod "+ 
-                        "Where pelicula.isAlquilada = false";
-                        //la consulta de mySQL que solo muestra los articulos que son peliculas y no estan alquiladas con su titulo y codigo
+                        "Where articulo.fechaBaja IS NULL AND pelicula.isAlquilada = false";
+                        //la consulta de mySQL que solo muestra los articulos que son peliculas y no estan alquiladas ni dadas de baja con su titulo y codigo
                         try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
                         ResultSet dataSet = statement.executeQuery(getAll);) {
                             while(dataSet.next()){
@@ -161,18 +163,40 @@ public class Main {
 
                         //Pedimos el codigo de la Pelicula que quiere alquilar
                         String codAlquilarP = myUtils.leerTextoPantalla("Cual es el codigo de la Pelicula que quieres alquilar: ");
-
                         miMDdata.alquilarPelicula(codAlquilarP);
                         
+                        //Mostramos los clientes para que diga quien la va alquilar
+                        String getClientes = "SELECT persona.dni, cliente.numSocio, cliente.articulosAlquilados, cliente.fechabaja " +
+                        "FROM persona "+
+                        "INNER JOIN cliente ON persona.dni = cliente.dni "+ 
+                        "Where cliente.fechaBaja IS NULL ";
+                        //la consulta de mySQL que solo muestra los clientes que no esten dados de baja con su numSocio y dni y los articulos que tiene alquilados
+                        try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+                        ResultSet dataSet = statement.executeQuery(getClientes);) {
+                            while(dataSet.next()){
+                                String dniSelect = dataSet.getNString(1);
+                                String numSocioSelect = dataSet.getNString(2);
+                                int articulosAlquiladosSelect = dataSet.getInt(3);
+
+                                System.out.println(numSocioSelect + " -- DNI = "+dniSelect + " -- Articulos Alquilados = " +articulosAlquiladosSelect);
+
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                        //Pedimos el numSocio que va alquilar
+                        String socioAlq = myUtils.leerTextoPantalla("Que cliente quiere alquilar la Pelicula (Introduce en numero de socio)");
+                        //Sumamos alquilar
+                        miMDdata.sumarYActualizarAlquilado(socioAlq);
 
                 //Codigo alquilar VideoJuego
                 }else if(menu.equals("2")){
                     //Enseñamos los videojuegos
-                    String getAll = "SELECT articulo.titulo, videojuego.cod, videojuego.isAlquilada " +
+                    String getAll = "SELECT articulo.titulo, videojuego.cod, videojuego.isAlquilada, articulo.fechabaja " +
                     "FROM videojuego "+
                     "INNER JOIN articulo ON videojuego.cod = articulo.cod "+ 
-                    "Where videojuego.isAlquilada = false";
-                    //la consulta de mySQL que solo muestra los articulos que son videojuegos y no estan alquilados con su titulo y codigo
+                    "Where videojuego.isAlquilada = false AND articulo.fechabaja is null";
+                    //la consulta de mySQL que solo muestra los articulos que son videojuegos y no estan alquilados ni dados de baja con su titulo y codigo
                     try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
                     ResultSet dataSet = statement.executeQuery(getAll);) {
                         while(dataSet.next()){
@@ -204,11 +228,11 @@ public class Main {
                 //Codigo devolver Pelicula
                 if(menu2.equals("1")){
                     //Enseñamos las Peliculas
-                    String getAll = "SELECT articulo.titulo, pelicula.cod, pelicula.isAlquilada " +
+                    String getAll = "SELECT articulo.titulo, pelicula.cod, pelicula.isAlquilada articulo.fechabaja " +
                     "FROM pelicula "+
                     "INNER JOIN articulo ON pelicula.cod = articulo.cod "+ 
-                    "Where pelicula.isAlquilada = true";
-                    //la consulta de mySQL que solo muestra los articulos que son peliculas y que estan alquiladas con su titulo y codigo
+                    "Where pelicula.isAlquilada = true AND articulo.fechabaja is null";
+                    //la consulta de mySQL que solo muestra los articulos que son peliculas y que estan alquiladas ni dadas de baja con su titulo y codigo
                     try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
                     ResultSet dataSet = statement.executeQuery(getAll);) {
                         while(dataSet.next()){
@@ -234,10 +258,10 @@ public class Main {
                 //Codigo devolver VideoJuego
                 else if (menu2.equals("2")){
                     //Enseñamos los videojuegos
-                    String getAll = "SELECT articulo.titulo, videojuego.cod, videojuego.isAlquilada " +
+                    String getAll = "SELECT articulo.titulo, videojuego.cod, videojuego.isAlquilada, articulo.fechabaja " +
                     "FROM videojuego "+
                     "INNER JOIN articulo ON videojuego.cod = articulo.cod "+ 
-                    "Where videojuego.isAlquilada = true";
+                    "Where videojuego.isAlquilada = true AND articulo.fechabaja is null";
                     //la consulta de mySQL que solo muestra los articulos que son videojuegos y que estan alquilados con su titulo y codigo
                     try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
                     ResultSet dataSet = statement.executeQuery(getAll);) {

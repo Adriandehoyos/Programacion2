@@ -17,6 +17,16 @@ public class Cliente extends Persona{
         this.articulosAlquilados = articulosAlquilados;
     }
 
+    
+
+    public Cliente(String dni, String nombre, String direccion, LocalDate fechaNacimiento, String numSocio,
+            int articulosAlquilados) {
+        super(dni, nombre, direccion, fechaNacimiento);
+        this.numSocio = numSocio;
+        this.articulosAlquilados = articulosAlquilados;
+    }
+
+
 
     public String getNumSocio() {
         return numSocio;

@@ -260,7 +260,7 @@ public class SQLAccesVideoDaw {
 
         public int alquilarPelicula(String alqP){
             int response = -1;
-            String sqlStatement = "UPDATE Pelicula set isAlquilada = true WHERE cod = ?";
+            String sqlStatement = "UPDATE Pelicula set isAlquilada = true , fechaAlquiler = CURRENT_DATE() WHERE cod = ?";
     
             try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -275,7 +275,7 @@ public class SQLAccesVideoDaw {
         //El de Videojuego
         public int alquilarVideojuego(String alqV){
             int response = -1;
-            String sqlStatement = "UPDATE Videojuego set isAlquilada = true WHERE cod = ?";
+            String sqlStatement = "UPDATE Videojuego set isAlquilada = true , fechaAlquiler = CURRENT_DATE() WHERE cod = ?";
     
             try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -292,7 +292,7 @@ public class SQLAccesVideoDaw {
 
         public int devolverPelicula(String dvlP){
             int response = -1;
-            String sqlStatement = "UPDATE Pelicula set isAlquilada = false WHERE cod = ?";
+            String sqlStatement = "UPDATE Pelicula set isAlquilada = false , fechaAlquiler = null WHERE cod = ?";
     
             try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -307,7 +307,7 @@ public class SQLAccesVideoDaw {
         //El de Videojuego
         public int devolverVideojuego(String dvlV){
             int response = -1;
-            String sqlStatement = "UPDATE Videojuego set isAlquilada = false WHERE cod = ?";
+            String sqlStatement = "UPDATE Videojuego set isAlquilada = false , fechaAlquiler = null WHERE cod = ?";
     
             try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -319,7 +319,59 @@ public class SQLAccesVideoDaw {
             return response;
         }
 
+        //Sumar o restar articulos alquilados
+        //Sumamos uno a los articulos alquilados y actualizamos el campo
+        public void sumarYActualizarAlquilado(String actAlq) {
 
+            String sqlSelect = "SELECT articulosAlquilados FROM cliente WHERE numSocio = ?";
+            String sqlUpdate = "UPDATE cliente SET articulosAlquilados = ? WHERE numSocio = ?";
+        
+            try (Connection connection = SQLAccesManager.getConnection();
+                PreparedStatement selectStatement = connection.prepareStatement(sqlSelect);
+                PreparedStatement updateStatement = connection.prepareStatement(sqlUpdate)) {
+        
+                selectStatement.setNString(1, actAlq);
+                ResultSet dataSet = selectStatement.executeQuery();
+        
+                if (dataSet.next()) {
+                    int articulosAlq = dataSet.getInt("articulosAlquilados");
+                    articulosAlq++; // sumamos uno
+        
+                    // Ahora hacemos el update con el nuevo valor
+                    updateStatement.setInt(1, articulosAlq);
+                    updateStatement.setNString(2, actAlq);
+                    updateStatement.executeUpdate();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        //restamos uno a los articulos alquilados y actualizamos el campo
+        public void restarYActualizarAlquilado(String actAlq) {
+
+            String sqlSelect = "SELECT articulosAlquilados FROM cliente WHERE numSocio = ?";
+            String sqlUpdate = "UPDATE cliente SET articulosAlquilados = ? WHERE numSocio = ?";
+        
+            try (Connection connection = SQLAccesManager.getConnection();
+                PreparedStatement selectStatement = connection.prepareStatement(sqlSelect);
+                PreparedStatement updateStatement = connection.prepareStatement(sqlUpdate)) {
+        
+                selectStatement.setNString(1, actAlq);
+                ResultSet dataSet = selectStatement.executeQuery();
+        
+                if (dataSet.next()) {
+                    int articulosAlq = dataSet.getInt("articulosAlquilados");
+                    articulosAlq--; // restamos uno
+        
+                    // Ahora hacemos el update con el nuevo valor
+                    updateStatement.setInt(1, articulosAlq);
+                    updateStatement.setNString(2, actAlq);
+                    updateStatement.executeUpdate();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
 
 
