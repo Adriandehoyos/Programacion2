@@ -374,6 +374,37 @@ public class SQLAccesVideoDaw {
         }
 
 
+        //Dar de baja lo hago con un update para que el fecha baja sea funcional, a diferencia de con un delete que lo borraria de la base de datos y 
+        //entonces no serviria de nada el fecha baja
+        //Metodo dar de baja cliente
+        public int bajaCliente(String bajaC){
+            int response = -1;
+            String sqlStatement = "UPDATE Cliente set fechabaja = CURRENT_DATE() WHERE numSocio = ?";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+                statement.setNString(1, bajaC);
+                statement.executeUpdate();
+                
+            } catch (Exception e) {
+                System.out.println("No se pudo dar de baja al cliente: "+e.getMessage());        }
+            return response;
+        }
+
+        //Metodo dar baja Articulo
+        public int bajaArticulo(String bajaA){
+            int response = -1;
+            String sqlStatement = "UPDATE Articulo set fechabaja = CURRENT_DATE() WHERE cod = ?";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+                statement.setNString(1, bajaA);
+                statement.executeUpdate();
+                
+            } catch (Exception e) {
+                System.out.println("No se pudo dar de baja al cliente: "+e.getMessage());        }
+            return response;
+        }
 
 
 
