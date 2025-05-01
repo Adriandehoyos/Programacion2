@@ -17,6 +17,12 @@ public class Articulo {
         this.fechaBaja = fechaBaja;
     }
 
+    public Articulo(String cod, String titulo) {
+        this.cod = cod;
+        this.titulo = titulo;
+    }
+
+
 
     public String getCod() {
         return cod;
@@ -45,8 +51,7 @@ public class Articulo {
 
     @Override
     public String toString() {
-        return "Articulo [cod=" + cod + ", titulo=" + titulo + ", fechaRegistro=" + fechaRegistro + ", fechaBaja="
-                + fechaBaja + "]";
+        return "Articulo [cod=" + cod + ", titulo=" + titulo + "]";
     }
 
 

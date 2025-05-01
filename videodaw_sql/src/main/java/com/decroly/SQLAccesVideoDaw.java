@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -77,29 +76,7 @@ public class SQLAccesVideoDaw {
                 return nuevoNumero;
             }
 
-        //Ahora metodo para mostrar los articulos
-        public List<Articulo> getInfoArticulos(){
-        List<Articulo> infoArticulos = new LinkedList<>();
 
-        String getAll = "SELECT * FROM articulo";
-
-        try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
-        ResultSet dataSet = statement.executeQuery(getAll);) {
-            while(dataSet.next()){
-                String cod = dataSet.getNString(1);
-                String titulo = dataSet.getNString(2);
-                LocalDate fechaRegistro = dataSet.getDate(3).toLocalDate();
-                LocalDate fechaBaja = dataSet.getDate(4).toLocalDate();
-
-
-                Articulo a1 =  new Articulo(cod, titulo, fechaRegistro, fechaBaja);
-                infoArticulos.add(a1);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return infoArticulos;
-    }
 
     //Metodo para crear Pelicula
     public int insertarPelicula(Pelicula nuevoP){
@@ -406,7 +383,27 @@ public class SQLAccesVideoDaw {
             return response;
         }
 
-
+        //Metodo para mostrar los articulos sin dar de baja
+        public List<Articulo> getInfoArticulos(){
+            List<Articulo> infoArticulos = new LinkedList<>();
+    
+            String getAll = "SELECT cod, titulo FROM articulo WHERE fechabaja is null";
+    
+            try (Connection connection = SQLAccesManager.getConnection(); Statement statement = connection.createStatement();
+            ResultSet dataSet = statement.executeQuery(getAll);) {
+                while(dataSet.next()){
+                    String cod = dataSet.getNString(1);
+                    String titulo = dataSet.getNString(2);
+    
+    
+                    Articulo a1 =  new Articulo(cod, titulo);
+                    infoArticulos.add(a1);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            return infoArticulos;
+        }
 
 
 
