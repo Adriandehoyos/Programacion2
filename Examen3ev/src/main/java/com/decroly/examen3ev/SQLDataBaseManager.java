@@ -1,4 +1,4 @@
-package com.decroly.simulacroexamen;
+package com.decroly.examen3ev;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,7 +20,7 @@ public class SQLDataBaseManager {
     public static Connection getConnection() {
         Connection connection = null;
 
-        try (FileReader fichero = new FileReader("src/main/resources/com/decroly/simulacroexamen/application.dat");
+        try (FileReader fichero = new FileReader("src/main/resources/application.dat");
              BufferedReader lector = new BufferedReader(fichero)) {
 
             String linea = lector.readLine();
