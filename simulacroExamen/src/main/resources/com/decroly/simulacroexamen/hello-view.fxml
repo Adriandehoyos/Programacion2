@@ -1,16 +1,483 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.decroly.simulacroexamen.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.decroly.simulacroexamen.HelloController">
+   <children>
+      <VBox fx:id="vBoxPrincipal" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="105.0" prefWidth="600.0" text="Gestion Valdecilla" textAlignment="CENTER" textFill="#d3aa76">
+                     <font>
+                        <Font name="Sylfaen" size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="13.0" prefWidth="577.0">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Separator>
+            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="600.0">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="33.0" prefWidth="312.0" text="¿Que quieres Hacer?" textAlignment="CENTER">
+                     <font>
+                        <Font name="Constantia" size="27.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin></Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <GridPane prefHeight="186.0" prefWidth="600.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="146.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="ButtonReMe" mnemonicParsing="false" onMouseClicked="#onButtonReMe" text="Medico" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="ButtonVerMe" mnemonicParsing="false" onMouseClicked="#onButtonVerMe" text="Ver Medicos" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label alignment="CENTER" prefHeight="28.0" prefWidth="297.0" text="Lista">
+                     <font>
+                        <Font name="Constantia" size="28.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="34.0" prefWidth="306.0" text="Registrar" textAlignment="CENTER" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Constantia" size="28.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="ButtonRePa" mnemonicParsing="false" onMouseClicked="#onButtonRePa" text="Paciente" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="170.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Ver Pacientes" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="170.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="ExitMainPanel" mnemonicParsing="false" onMouseClicked="#onExitMainPanel" text="Salir" />
+               </children>
+            </HBox>
+         </children></VBox>
+      <VBox fx:id="vBoxREgistrarPaciente" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="105.0" prefWidth="600.0" text="Registrar Paciente" textAlignment="CENTER" textFill="#d3aa76">
+                     <font>
+                        <Font name="Sylfaen" size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="13.0" prefWidth="577.0">
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Separator>
+            <GridPane prefHeight="199.0" prefWidth="546.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="182.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="418.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="17.0" prefWidth="180.0" text="Nombre" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="181.0" text="Direccion" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="186.0" text="Fecha Nacimiento" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="180.0" text="DNI">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField maxWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Inicio">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Guardar">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxREgistrarMedico" layoutX="-1.0" layoutY="-1.0" prefHeight="411.0" prefWidth="611.0" visible="false">
+         <children>
+            <HBox prefHeight="90.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="105.0" prefWidth="593.0" text="Registrar Medico" textAlignment="CENTER" textFill="#d3aa76">
+                     <font>
+                        <Font name="Sylfaen" size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="13.0" prefWidth="577.0">
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Separator>
+            <GridPane prefHeight="199.0" prefWidth="546.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="182.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="418.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="17.0" prefWidth="180.0" text="Nombre" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="181.0" text="Direccion" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="186.0" text="Fecha Nacimiento" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="180.0" text="DNI">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="TextFieldDniM" maxWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="TextFieldNombreM" maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="TextFieldDirecM" maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="TextFieldFechaM" maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <ComboBox fx:id="comboBoxEs" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <Label prefHeight="17.0" prefWidth="180.0" text="Especialidad" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="13.0" prefWidth="577.0" />
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="ButtonInicioReMe" mnemonicParsing="false" onMouseClicked="#onButtonInicioReMe" prefHeight="30.0" prefWidth="90.0" text="Inicio">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="ButtonsaveReMe" mnemonicParsing="false" onMouseClicked="#onButtonsaveReMe" prefHeight="30.0" prefWidth="90.0" text="Guardar">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxListaMedicos" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="105.0" prefWidth="600.0" text="Lista Medicos" textAlignment="CENTER" textFill="#d3aa76">
+                     <font>
+                        <Font name="Sylfaen" size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="13.0" prefWidth="577.0">
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Separator>
+            <ListView fx:id="ListViewMe" maxWidth="-Infinity" prefHeight="222.0" prefWidth="556.0">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </ListView>
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="ButtonUpdateList" mnemonicParsing="false" onMouseClicked="#onButtonUpdateList" text="Actualizar">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="ButtonExport" mnemonicParsing="false" onMouseClicked="#onButtonExport" prefHeight="30.0" prefWidth="90.0" text="Exportar">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="ButtonInicioLMe" mnemonicParsing="false" onMouseClicked="#onButtonInicioLMe" prefHeight="30.0" prefWidth="90.0" text="Inicio">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="ButtonDeleteMe" mnemonicParsing="false" onMouseClicked="#onButtonDeleteMe" prefHeight="30.0" prefWidth="90.0" text="Eliminar">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxUpdate" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="105.0" prefWidth="600.0" text="Actualizar Campos" textAlignment="CENTER" textFill="#d3aa76">
+                     <font>
+                        <Font name="Sylfaen" size="48.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="7.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Separator maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="13.0" prefWidth="577.0">
+               <VBox.margin>
+                  <Insets left="7.0" />
+               </VBox.margin>
+            </Separator>
+            <GridPane prefHeight="199.0" prefWidth="546.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="182.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.0" minWidth="10.0" prefWidth="418.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="17.0" prefWidth="180.0" text="Nombre" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="181.0" text="Direccion" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="186.0" text="Fecha Nacimiento" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label contentDisplay="CENTER" prefHeight="27.0" prefWidth="180.0" text="DNI">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="TextFieldDniM1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="TextFieldNombreM1" maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="TextFieldDirecM1" maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="TextFieldFechaM1" maxWidth="-Infinity" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="40.0" right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <ComboBox fx:id="comboBoxEs1" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="40.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <Label prefHeight="17.0" prefWidth="180.0" text="Especialidad" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="ButtonCancelar" mnemonicParsing="false" onMouseClicked="#onButtonCancelar" text="Cancelar">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="ButtonUpdate" mnemonicParsing="false" onMouseClicked="#updateMedico" text="Actualizar">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children></VBox>
+   </children>
+</AnchorPane>
