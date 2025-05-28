@@ -16,7 +16,7 @@ public class SQLDataBaseManager {
     private static String USUARIO;
     private static String CLAVE;
 
-
+    //He hecho la conexion a bases de datos con un usuario creado llamado developer
     public static Connection getConnection() {
         Connection connection = null;
 

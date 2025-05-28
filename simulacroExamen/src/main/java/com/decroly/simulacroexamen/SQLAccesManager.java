@@ -58,6 +58,8 @@ public class SQLAccesManager {
     }
 
 
+
+
     public int eliminarMedico(Medicos deleteMe){
         int elements = -1;
 

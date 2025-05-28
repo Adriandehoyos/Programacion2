@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.decroly.examen3ev.VetController">
+   <children>
+      <VBox fx:id="MainPanel" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <children>
+            <GridPane alignment="CENTER" prefHeight="404.0" prefWidth="600.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="mainReMa" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onMainReMa" text="Registrar Mascota">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="mainRePo" mnemonicParsing="false" onMouseClicked="#onMainRePo" text="Registrar Propietario" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="mainReCo" mnemonicParsing="false" onMouseClicked="#onMainReCo" text="Registrar Consulta" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="mainBuMa" mnemonicParsing="false" onMouseClicked="#onMainBuMa" text="Buscar Mascota" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="ButtonExportar" mnemonicParsing="false" onMouseClicked="#onButtonExportar" text="Exportar Datos" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="ExitButton" mnemonicParsing="false" onMouseClicked="#onExitButton" text="Salir App" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="120.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxReMa" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <children>
+            <GridPane prefHeight="407.0" prefWidth="600.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="179.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="421.0" minWidth="10.0" prefWidth="421.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="inicioReMa" mnemonicParsing="false" onMouseClicked="#onInicioReMa" text="Inicio" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="130.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="saveMa" mnemonicParsing="false" onMouseClicked="#onsaveMa" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="130.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label prefHeight="17.0" prefWidth="224.0" text="Pasaporte">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="157.0" text="Nombre" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Fecha de Nacimiento" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="148.0" text="Peso" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="146.0" text="Tipo" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="17.0" prefWidth="159.0" text="Propietario" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="30.0" left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="pasaporteMa" maxWidth="350.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="nombreMa" maxWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="nacimientoMa" maxWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="pseoMa" maxWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ListView fx:id="ListViewProp" maxWidth="-Infinity" prefHeight="81.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ListView fx:id="ListViewTipos" maxWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxReProp" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <children>
+            <GridPane prefHeight="418.0" prefWidth="600.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="267.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="333.0" minWidth="10.0" prefWidth="333.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Nombre">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Apellidos" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="DNI" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Telefono" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Direccion" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Email" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="NombrePo" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="ApellidosPo" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="DniPo" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="TelefonoPo" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="DireccionPo" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="EmailPo" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="InicioReProp" mnemonicParsing="false" onMouseClicked="#oninicioReProp" text="Inicio" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="SaveProp" mnemonicParsing="false" onMouseClicked="#onsaveProp" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxReConsulta" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <GridPane prefHeight="242.0" prefWidth="600.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="249.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0" minWidth="10.0" prefWidth="351.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Fecha">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Duracion" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Observaciones" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="9.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="fechaCon" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextArea fx:id="observacionesCon" maxHeight="-Infinity" prefHeight="51.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets right="9.0" />
+                     </GridPane.margin>
+                  </TextArea>
+                  <TextField fx:id="duracionCon" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Label text="Mascota">
+               <padding>
+                  <Insets left="9.0" />
+               </padding>
+            </Label>
+            <ListView fx:id="ListViewMasCon" maxWidth="-Infinity" prefHeight="133.0" prefWidth="515.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="60.0" />
+               </VBox.margin>
+            </ListView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="inicioReCon" mnemonicParsing="false" onMouseClicked="#onInicioReCon" text="Inicio">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="saveCon" mnemonicParsing="false" onMouseClicked="#saveCon" text="Guardar">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vBoxBuscarMa" prefHeight="400.0" prefWidth="600.0" visible="false">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="102.0" prefWidth="621.0" text="Busca tu mascota Con el Pasaporte">
+                     <font>
+                        <Font name="Bodoni MT" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="TextFieldBuscar" />
+                  <Button fx:id="Buscar" mnemonicParsing="false" onMouseClicked="#onBuscar" text="Buscar" />
+                  <Button fx:id="ButtonBusOut" mnemonicParsing="false" onMouseClicked="#onButtonBusOut" text="Salir">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <ListView fx:id="ListViewSelect" maxWidth="-Infinity" prefHeight="112.0" prefWidth="400.0">
+               <VBox.margin>
+                  <Insets left="100.0" />
+               </VBox.margin>
+            </ListView>
+         </children></VBox>
+   </children>
+</AnchorPane>
